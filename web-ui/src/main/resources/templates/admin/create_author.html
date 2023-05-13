@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/admin/head_fragment.html :: head(title='Создание автора', description='Создание карточки автора')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/admin/header_fragment :: head(main='authors')}"></header>
+
+<main>
+    <h1>Создать автора</h1>
+    <h2>Атрибуты:</h2>
+    <form>
+        <div class="form-group">
+            <label for="name-input">Название</label>
+            <input type="text" class="form-control" id="name-input" required>
+        </div>
+
+        <hr class="my-4">
+
+        <button onclick="createAuthorObj()" class="btn btn-primary btn-lg" type="submit">Сохранить</button>
+
+    </form>
+
+
+</main>
+<footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
+</body>
+</html>

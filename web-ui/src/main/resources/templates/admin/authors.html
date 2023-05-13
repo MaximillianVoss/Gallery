@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/admin/head_fragment.html :: head(title='Авторы', description='Каталог авторов')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/admin/header_fragment :: head(main='authors')}"></header>
+
+<main>
+    <h2>Авторы</h2>
+    <div class="d-flex gap-2 py-5">
+        <button id="update-author" class="btn btn-primary">Редактировать</button>
+        <button id="create-author" class="btn btn-primary">Создать</button>
+    </div>
+
+
+    <table id="authors-table" class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Название</th>
+        </tr>
+        </thead>
+
+        <tfoot>
+        <tr>
+            <th>идентификатор</th>
+            <th>название</th>
+        </tr>
+        </tfoot>
+
+    </table>
+</main>
+</div>
+<footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+        $('#authors-table tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Найти ' + title + '" />');
+        });
+
+        var table = $('#authors-table').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api()
+                    .columns()
+                    .every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that.search(this.value).draw();
+                            }
+                        });
+                    });
+            },
+            "lengthMenu": [10, 25],
+            "ordering": false, //todo add
+            "processing": true,
+            "serverSide": true,
+            "columns": [ // NOTE: you need to specify names of fields as ids for the columns
+                {"data": "id"},
+                {"data": "name"}
+            ],
+            "ajax": {
+                "url": "/api/v1/data-tables/authors",
+                "type": "POST",
+                "contentType": "application/json; charset=utf-8",
+                "data": function (json) {
+                    return JSON.stringify(json);
+                }
+            }
+        });
+
+        $('#authors-table tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#update-author').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            window.location.href = (window.location.pathname + "/" + ids[1]);
+        });
+
+        $('#create-author').click(function () {
+            window.location.href = (window.location.pathname + "/create");
+        });
+    });
+</script>
+
+</body>
+</html>

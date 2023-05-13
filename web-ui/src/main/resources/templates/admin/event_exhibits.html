@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/admin/head_fragment.html :: head(title='Экспонаты мероприятия', description='Экспонаты мероприятия')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/admin/header_fragment :: head(main='events')}"></header>
+
+<main>
+    <h1 th:text="${event.name}">Мероприятие</h1>
+    <h2>Экспонаты мероприятия:</h2>
+
+    <div class="d-flex gap-2 py-5">
+        <button onclick="deleteEventExhibitObj()" id="delete-exhibit" class="btn btn-primary">Удалить</button>
+    </div>
+
+    <table id="event-exhibits-table" class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Название</th>
+            <th>Артикул</th>
+            <th>Автор</th>
+            <th>Тип</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <hr class="my-4">
+
+    <h2>Все экспонаты:</h2>
+
+    <div class="d-flex gap-2 py-5">
+        <button onclick="addEventExhibitObj()" id="add-exhibit" class="btn btn-primary">Добавить</button>
+    </div>
+
+    <table id="exhibits-table" class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Название</th>
+            <th>Артикул</th>
+            <th>Автор</th>
+            <th>Тип</th>
+        </tr>
+        </thead>
+
+    </table>
+
+</main>
+<footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+
+        let url = window.location.pathname;
+        let pathArray = url.split("/");
+        let id = pathArray[3];
+
+        var table = $('#event-exhibits-table').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api()
+                    .columns()
+                    .every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that.search(this.value).draw();
+                            }
+                        });
+                    });
+            },
+            "lengthMenu": [10, 25],
+            "ordering": false, //todo add
+            "processing": true,
+            "serverSide": true,
+            "columns": [ // NOTE: you need to specify names of fields as ids for the columns
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "code"},
+                {"data": "author"},
+                {"data": "type"}
+            ],
+            "ajax": {
+                "url": "/api/v1/data-tables/events/" + id + "/exhibits",
+                "type": "POST",
+                "contentType": "application/json; charset=utf-8",
+                "data": function (json) {
+                    return JSON.stringify(json);
+                }
+            }
+        });
+
+        $('#event-exhibits-table tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#exhibits-table tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Найти ' + title + '" />');
+        });
+
+        var table = $('#exhibits-table').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api()
+                    .columns()
+                    .every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that.search(this.value).draw();
+                            }
+                        });
+                    });
+            },
+            "lengthMenu": [10, 25],
+            "ordering": false, //todo add
+            "processing": true,
+            "serverSide": true,
+            "columns": [ // NOTE: you need to specify names of fields as ids for the columns
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "code"},
+                {"data": "author"},
+                {"data": "type"}
+            ],
+            "ajax": {
+                "url": "/api/v1/data-tables/exhibits",
+                "type": "POST",
+                "contentType": "application/json; charset=utf-8",
+                "data": function (json) {
+                    return JSON.stringify(json);
+                }
+            }
+        });
+
+        $('#exhibits-table tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

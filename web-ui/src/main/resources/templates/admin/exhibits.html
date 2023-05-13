@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/admin/head_fragment.html :: head(title='Каталог', description='Каталог экспонатов')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/admin/header_fragment :: head(main='exhibits')}"></header>
+
+<main>
+    <h2>Экспонаты</h2>
+    <div class="d-flex gap-2 py-5">
+        <button id="update-exhibit" class="btn btn-primary">Редактировать</button>
+        <button id="create-exhibit" class="btn btn-primary">Создать</button>
+        <button id="replace-exhibit" class="btn btn-primary">Переместить</button>
+        <button id="add-exhibit-doc" class="btn btn-primary">Добавить документы</button>
+    </div>
+
+
+    <table id="exhibits-table" class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Название</th>
+            <th>Артикул</th>
+            <th>Автор</th>
+            <th>Тип</th>
+        </tr>
+        </thead>
+
+        <tfoot>
+        <tr>
+            <th>идентификатор</th>
+            <th>название</th>
+            <th>артикул</th>
+            <th>автор</th>
+            <th>тип</th>
+        </tr>
+        </tfoot>
+
+    </table>
+</main>
+</div>
+<footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+        $('#exhibits-table tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Найти ' + title + '" />');
+        });
+
+        var table = $('#exhibits-table').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api()
+                    .columns()
+                    .every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that.search(this.value).draw();
+                            }
+                        });
+                    });
+            },
+            "lengthMenu": [10, 25],
+            "ordering": false, //todo add
+            "processing": true,
+            "serverSide": true,
+            "columns": [ // NOTE: you need to specify names of fields as ids for the columns
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "code"},
+                {"data": "author"},
+                {"data": "type"},
+            ],
+            "ajax": {
+                "url": "/api/v1/data-tables/exhibits",
+                "type": "POST",
+                "contentType": "application/json; charset=utf-8",
+                "data": function (json) {
+                    return JSON.stringify(json);
+                }
+            }
+        });
+
+        $('#exhibits-table tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#replace-exhibit').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            window.location.href = (window.location.pathname + "/" + ids[3] + "/places");
+        });
+
+        $('#update-exhibit').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            window.location.href = (window.location.pathname + "/" + ids[3]);
+        });
+
+        $('#create-exhibit').click(function () {
+            window.location.href = (window.location.pathname + "/create");
+        });
+
+        $('#add-exhibit-doc').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            window.location.href = (window.location.pathname + "/" + ids[3] + "/documents");
+        });
+    });
+</script>
+
+</body>
+</html>

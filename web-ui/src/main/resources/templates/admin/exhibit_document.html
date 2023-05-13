@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/admin/head_fragment.html :: head(title='Перемещения мероприятий', description='Перемещения мероприятий')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/admin/header_fragment :: head(main='exhibits')}"></header>
+
+<main>
+    <h1 th:text="${exhibit.name}">Экспонат</h1>
+    <h2>Документы экспоната:</h2>
+
+    <div class="d-flex gap-2 py-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Создать
+        </button>
+        <button onclick="deleteExhibitDocument()" id="delete-exhibit-document" class="btn btn-primary">Удалить</button>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Добавить перемещение</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="fileUploadForm" method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label for="file-input" class="col-form-label">Изображение для книги:</label>
+                            <input id="file-input" name="doc" class="form-control" type="file" required/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="type-input" class="col-form-label">Тип</label>
+                            <select name="type" class="form-select" id="type-input" required>
+                                <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}">
+                                    United States
+                                </option>
+                            </select>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button onclick="uploadFile()" type="button" class="btn btn-primary">Добавить документ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="exhibits-table" class="table table-striped">
+
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Тип</th>
+            <th>Путь</th>
+        </tr>
+        </thead>
+
+    </table>
+
+</main>
+<footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+        $('#exhibits-table tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Найти ' + title + '" />');
+        });
+
+        let url = window.location.pathname;
+        let pathArray = url.split("/");
+        let id = pathArray[3];
+
+        var table = $('#exhibits-table').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api()
+                    .columns()
+                    .every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that.search(this.value).draw();
+                            }
+                        });
+                    });
+            },
+            "lengthMenu": [10, 25],
+            "ordering": false, //todo add
+            "processing": true,
+            "serverSide": true,
+            "columns": [ // NOTE: you need to specify names of fields as ids for the columns
+                {"data": "id"},
+                {"data": "type"},
+                {"data": "path"}
+            ],
+            "ajax": {
+                "url": "/api/v1/data-tables/exhibits/" + id + "/documents",
+                "type": "POST",
+                "contentType": "application/json; charset=utf-8",
+                "data": function (json) {
+                    return JSON.stringify(json);
+                }
+            }
+        });
+
+        $('#exhibits-table tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>
