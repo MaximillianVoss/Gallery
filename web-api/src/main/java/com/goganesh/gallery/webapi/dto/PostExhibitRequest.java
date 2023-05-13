@@ -18,4 +18,7 @@ public class PostExhibitRequest {
     @NotNull
     @JsonProperty("type_id")
     private UUID typeId;
+    @NotNull
+    @JsonProperty("storage_condition_id")
+    private UUID storageConditionId;
 }

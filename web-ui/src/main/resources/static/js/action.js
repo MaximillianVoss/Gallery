@@ -6,6 +6,7 @@ function updateExhibitObj() {
     obj.code = $("#code-input").val();
     obj.author_id = $("#author-input").val();
     obj.type_id = $("#type-input").val();
+    obj.storage_condition_id = $("#storage-condition-input").val();
 
     let json = JSON.stringify(obj);
     $.ajax({
@@ -26,6 +27,7 @@ function createExhibitObj() {
     obj.description = $("#description-input").val();
     obj.author_id = $("#author-input").val();
     obj.type_id = $("#type-input").val();
+    obj.storage_condition_id = $("#storage-condition-input").val();
 
     let json = JSON.stringify(obj);
     $.ajax({

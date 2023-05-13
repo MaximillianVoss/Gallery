@@ -28,7 +28,7 @@ public class Exhibit extends BaseEntity {
     private Dictionary type;
 
     @ManyToOne
-    @JoinColumn(name = "storage condition_id")
+    @JoinColumn(name = "storage_condition_id")
     private Dictionary storageCondition;
 
 }

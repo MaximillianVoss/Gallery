@@ -5,19 +5,19 @@ insert into author values ('de9404a3-2996-4db7-8d46-619aa241362c', 'тестов
 
 insert into event values ('d82bc250-07aa-47da-9ba0-93b83b59cf9e', 'Персональная выставка Тестового автора', 'Тестовый автор популярный художник', '2023-03-01', '2023-03-15', 'fffaf5fe-4885-4cce-8361-98602c5ac965');
 
-insert into exhibit values ('d17a9d20-fcc8-49e3-9924-aba19b423209', 'тестовый экспонат1', '', 'CODE1', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55');
-insert into exhibit values ('c537a02c-e622-4bf3-9945-903731ea5d91', 'тестовый экспонат2', '', 'CODE2', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55');
-insert into exhibit values ('596e6eca-b57d-4ee1-9c4f-bf378bf32490', 'тестовый экспонат3', '', 'CODE3', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55');
-insert into exhibit values ('0dfec3b0-f300-4e2c-b249-9177e0efc6d0', 'тестовый экспонат4', '', 'CODE4', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55');
-insert into exhibit values ('9124b0d4-d07c-4b23-93e7-ee53a8171360', 'тестовый экспонат5', '', 'CODE5', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55');
-insert into exhibit values ('0a5d5556-5de3-419f-853f-5615eebb01db', 'тестовый экспонат6', '', 'CODE6', '9dd8ca37-c315-4525-8648-edf1da198fdb', '1a46cebe-e9c5-4d7c-ac57-0985413869e2');
-insert into exhibit values ('1f0bc7e1-0e28-4aff-b8d1-6e9a3d6c5e55', 'тестовый экспонат7', '', 'CODE7', '9dd8ca37-c315-4525-8648-edf1da198fdb', '1a46cebe-e9c5-4d7c-ac57-0985413869e2');
-insert into exhibit values ('867f5baf-cce6-4f8f-8d07-316c2dbb146e', 'тестовый экспонат8', '', 'CODE8', '9dd8ca37-c315-4525-8648-edf1da198fdb', '1a46cebe-e9c5-4d7c-ac57-0985413869e2');
-insert into exhibit values ('2acc3efc-d903-485f-aa2a-54dfe4fe34a2', 'тестовый экспонат9', '', 'CODE9', '9dd8ca37-c315-4525-8648-edf1da198fdb', '41df0569-3e1d-4102-b4aa-26508210425d');
-insert into exhibit values ('ea5da651-f243-4815-bd65-3cf6ddd5e2d2', 'тестовый экспонат10', '', 'CODE10', '9dd8ca37-c315-4525-8648-edf1da198fdb', '41df0569-3e1d-4102-b4aa-26508210425d');
-insert into exhibit values ('126444e1-34be-48df-a69a-74230a64d0a6', 'тестовый экспонат11', '', 'CODE11', '9dd8ca37-c315-4525-8648-edf1da198fdb', '41df0569-3e1d-4102-b4aa-26508210425d');
-insert into exhibit values ('7b282345-9868-4788-9ca7-f0c5431d84b9', 'тестовый экспонат12', '', 'CODE12', '9dd8ca37-c315-4525-8648-edf1da198fdb', '41df0569-3e1d-4102-b4aa-26508210425d');
-insert into exhibit values ('24920bd7-468c-4c56-8e7b-808a819bf1ce', 'тестовый экспонат13', '', 'CODE13', '9dd8ca37-c315-4525-8648-edf1da198fdb', '41df0569-3e1d-4102-b4aa-26508210425d');
+insert into exhibit values ('d17a9d20-fcc8-49e3-9924-aba19b423209', 'тестовый экспонат1', '', 'CODE1', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('c537a02c-e622-4bf3-9945-903731ea5d91', 'тестовый экспонат2', '', 'CODE2', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('596e6eca-b57d-4ee1-9c4f-bf378bf32490', 'тестовый экспонат3', '', 'CODE3', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('0dfec3b0-f300-4e2c-b249-9177e0efc6d0', 'тестовый экспонат4', '', 'CODE4', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('9124b0d4-d07c-4b23-93e7-ee53a8171360', 'тестовый экспонат5', '', 'CODE5', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('0a5d5556-5de3-419f-853f-5615eebb01db', 'тестовый экспонат6', '', 'CODE6', '9dd8ca37-c315-4525-8648-edf1da198fdb', '1a46cebe-e9c5-4d7c-ac57-0985413869e2', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('1f0bc7e1-0e28-4aff-b8d1-6e9a3d6c5e55', 'тестовый экспонат7', '', 'CODE7', '9dd8ca37-c315-4525-8648-edf1da198fdb', '1a46cebe-e9c5-4d7c-ac57-0985413869e2', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('867f5baf-cce6-4f8f-8d07-316c2dbb146e', 'тестовый экспонат8', '', 'CODE8', '9dd8ca37-c315-4525-8648-edf1da198fdb', '1a46cebe-e9c5-4d7c-ac57-0985413869e2', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('2acc3efc-d903-485f-aa2a-54dfe4fe34a2', 'тестовый экспонат9', '', 'CODE9', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('ea5da651-f243-4815-bd65-3cf6ddd5e2d2', 'тестовый экспонат10', '', 'CODE10', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('126444e1-34be-48df-a69a-74230a64d0a6', 'тестовый экспонат11', '', 'CODE11', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('7b282345-9868-4788-9ca7-f0c5431d84b9', 'тестовый экспонат12', '', 'CODE12', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
+insert into exhibit values ('24920bd7-468c-4c56-8e7b-808a819bf1ce', 'тестовый экспонат13', '', 'CODE13', '9dd8ca37-c315-4525-8648-edf1da198fdb', '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186');
 
 insert into exhibit_place values ('291b1fc9-8f63-4366-a695-2996508112fc', 'd17a9d20-fcc8-49e3-9924-aba19b423209', '78585f52-a925-4a33-9dd4-3c520229da43', 'Покупка', '2023-01-02', '2023-03-01');
 insert into exhibit_place values ('4878c777-9767-45f4-a3f1-545a233a8f46', 'd17a9d20-fcc8-49e3-9924-aba19b423209', 'f2145928-eeac-4347-bd3c-2e2dabbf0608', 'Выставка', '2023-03-01', '2023-03-15');

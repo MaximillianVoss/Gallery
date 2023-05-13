@@ -24,6 +24,7 @@
             <th>Артикул</th>
             <th>Автор</th>
             <th>Тип</th>
+            <th>Условия хранения</th>
         </tr>
         </thead>
 
@@ -45,7 +46,8 @@
             <th>Название</th>
             <th>Артикул</th>
             <th>Автор</th>
-            <th>Тип</th>
+            <th>Категория</th>
+            <th>Условия хранения</th>
         </tr>
         </thead>
 
@@ -88,7 +90,8 @@
                 {"data": "name"},
                 {"data": "code"},
                 {"data": "author"},
-                {"data": "type"}
+                {"data": "type"},
+                {"data": "storageCondition"}
             ],
             "ajax": {
                 "url": "/api/v1/data-tables/events/" + id + "/exhibits",
@@ -138,7 +141,8 @@
                 {"data": "name"},
                 {"data": "code"},
                 {"data": "author"},
-                {"data": "type"}
+                {"data": "type"},
+                {"data": "storageCondition"}
             ],
             "ajax": {
                 "url": "/api/v1/data-tables/exhibits",

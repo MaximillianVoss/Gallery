@@ -34,6 +34,9 @@
             <column name="type_id" type="UUID" remarks="тип экспоната">
                 <constraints nullable="false"/>
             </column>
+            <column name="storage_condition_id" type="UUID" remarks="тип условия хранения">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createTable tableName="author" remarks="авторы работ">
@@ -140,7 +143,13 @@
 
         <addForeignKeyConstraint baseColumnNames="type_id"
                                  baseTableName="exhibit"
-                                 constraintName="fk_exhibit_exhibit_id"
+                                 constraintName="fk_exhibit_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dictionary"/>
+
+        <addForeignKeyConstraint baseColumnNames="storage_condition_id"
+                                 baseTableName="exhibit"
+                                 constraintName="fk_exhibit_storage_condition_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dictionary"/>
 

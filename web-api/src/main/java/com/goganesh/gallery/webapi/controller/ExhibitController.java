@@ -41,9 +41,13 @@ public class ExhibitController {
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", putExhibitRequest.getAuthorId().toString()));
         exhibit.setAuthor(author);
 
-        Dictionary dictionary = dictionaryService.findById(putExhibitRequest.getTypeId())
+        Dictionary type = dictionaryService.findById(putExhibitRequest.getTypeId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getTypeId().toString()));
-        exhibit.setType(dictionary);
+        exhibit.setType(type);
+
+        Dictionary storageCondition = dictionaryService.findById(putExhibitRequest.getStorageConditionId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getTypeId().toString()));
+        exhibit.setStorageCondition(storageCondition);
 
         return exhibitService.update(exhibit);
     }
@@ -57,9 +61,13 @@ public class ExhibitController {
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", postExhibitRequest.getAuthorId().toString()));
         exhibit.setAuthor(author);
 
-        Dictionary dictionary = dictionaryService.findById(postExhibitRequest.getTypeId())
+        Dictionary type = dictionaryService.findById(postExhibitRequest.getTypeId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getTypeId().toString()));
-        exhibit.setType(dictionary);
+        exhibit.setType(type);
+
+        Dictionary storageCondition = dictionaryService.findById(postExhibitRequest.getStorageConditionId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getTypeId().toString()));
+        exhibit.setStorageCondition(storageCondition);
 
         return exhibitService.create(exhibit);
     }

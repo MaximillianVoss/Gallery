@@ -17,4 +17,5 @@ public class ExhibitDataTablesDto {
     private String code;
     private String author;
     private String type;
+    private String storageCondition;
 }
