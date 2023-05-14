@@ -5,7 +5,7 @@ import com.goganesh.gallery.model.service.*;
 import com.goganesh.gallery.webapi.controller.AuthorController;
 import com.goganesh.gallery.webapi.controller.EventController;
 import com.goganesh.gallery.webapi.controller.ExhibitController;
-import com.goganesh.gallery.webapi.controller.FileUploadController;
+import com.goganesh.gallery.webapi.controller.FileController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -36,9 +36,10 @@ public class WebApiConfiguration {
     }
 
     @Bean
-    public FileUploadController fileUploadController(ExhibitService exhibitService,
-                                                     DictionaryService dictionaryService,
-                                                     ExhibitFileService exhibitFileService) {
-        return new FileUploadController(exhibitService, dictionaryService, exhibitFileService);
+    public FileController fileController(ExhibitService exhibitService,
+                                         DictionaryService dictionaryService,
+                                         ExhibitFileService exhibitFileService,
+                                         FileStorageService fileStorageService) {
+        return new FileController(exhibitService, dictionaryService, exhibitFileService, fileStorageService);
     }
 }

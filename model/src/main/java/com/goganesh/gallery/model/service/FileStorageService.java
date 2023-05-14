@@ -29,4 +29,8 @@ public class FileStorageService {
 
         return path.toString();
     }
+
+    public File getFileByPath(String path) {
+        return new File(path);
+    }
 }

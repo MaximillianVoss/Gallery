@@ -218,3 +218,42 @@ function uploadFile() {
         }
     });
 }
+
+function downloadFile() {
+    let path = $("#exhibits-table .selected td:last-child").text().replace('web-ui/src/main/resources/static/', '');
+    open("http://localhost:8080/" + path);
+}
+
+function downloadFileTest() {
+    let url = window.location.pathname;
+    let pathArray = url.split("/");
+    let exhibitId = pathArray[3];
+    let documentId = $("#exhibits-table .selected td:first-child").text();
+
+    $.ajax({
+        url: "http://localhost:8080/api/v1/exhibits/" + exhibitId + "/documents/" + documentId,
+        type: "GET",
+
+        success: function (data, status, xhr) {
+            var i = 0,
+                dataArray = new Uint8Array(data.length);
+            for (; i < data.length; i++) {
+                dataArray[i] = data.charCodeAt(i)
+            }
+
+            var blob = new Blob([dataArray.buffer], {
+                type: "application/pdf"
+            });
+            let link = document.createElement('a');
+            link.download = 'ubkfile.pdf';
+
+            let reader = new FileReader();
+            reader.readAsDataURL(blob); // converts the blob to base64 and calls onload
+
+            reader.onload = function() {
+                link.href = reader.result;
+                link.click();
+            };
+        }
+    })
+}
