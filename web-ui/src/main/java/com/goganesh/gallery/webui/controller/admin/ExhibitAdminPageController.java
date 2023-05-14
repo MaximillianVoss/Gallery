@@ -20,7 +20,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin/exhibits")
 @AllArgsConstructor
-public class ExhibitPageController {
+public class ExhibitAdminPageController {
 
     private static final String EXHIBIT_TYPE_CODE = "EXH_TYPE";
     private static final String PLACE_TYPE_CODE = "PLACE_TYPE";

@@ -2,11 +2,11 @@ package com.goganesh.gallery.webui.configuration;
 
 import com.goganesh.gallery.model.configuration.ModelConfiguration;
 import com.goganesh.gallery.model.service.*;
-import com.goganesh.gallery.webui.controller.admin.AuthorPageController;
-import com.goganesh.gallery.webui.controller.admin.EventPageController;
-import com.goganesh.gallery.webui.controller.admin.ExhibitPageController;
+import com.goganesh.gallery.webui.controller.admin.AuthorAdminPageController;
+import com.goganesh.gallery.webui.controller.admin.EventAdminPageController;
+import com.goganesh.gallery.webui.controller.admin.ExhibitAdminPageController;
 import com.goganesh.gallery.webui.controller.admin.AdminPageController;
-import com.goganesh.gallery.webui.controller.client.GalleryPageController;
+import com.goganesh.gallery.webui.controller.client.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,25 +21,45 @@ public class WebUiConfiguration {
     }
 
     @Bean
-    public ExhibitPageController adminExhibitPageController(ExhibitService exhibitService,
-                                                            AuthorService authorService,
-                                                            DictionaryService dictionaryService) {
-        return new ExhibitPageController(exhibitService, authorService, dictionaryService);
+    public ExhibitAdminPageController exhibitAdminPageController(ExhibitService exhibitService,
+                                                                 AuthorService authorService,
+                                                                 DictionaryService dictionaryService) {
+        return new ExhibitAdminPageController(exhibitService, authorService, dictionaryService);
     }
 
     @Bean
-    public AuthorPageController adminAuthorPageController(AuthorService authorService) {
-        return new AuthorPageController(authorService);
+    public AuthorAdminPageController authorAdminPageController(AuthorService authorService) {
+        return new AuthorAdminPageController(authorService);
     }
 
     @Bean
-    public EventPageController adminEventPageController(EventService eventService,
-                                                        DictionaryService dictionaryService) {
-        return new EventPageController(eventService, dictionaryService);
+    public EventAdminPageController eventAdminPageController(EventService eventService,
+                                                             DictionaryService dictionaryService) {
+        return new EventAdminPageController(eventService, dictionaryService);
     }
 
     @Bean
     public GalleryPageController galleryPageController() {
         return new GalleryPageController();
+    }
+
+    @Bean
+    public AboutPageController aboutPageController() {
+        return new AboutPageController();
+    }
+
+    @Bean
+    public ContactsPageController contactsPageController() {
+        return new ContactsPageController();
+    }
+
+    @Bean
+    public EventsPageController eventsPageController() {
+        return new EventsPageController();
+    }
+
+    @Bean
+    public ExhibitsPageController exhibitsPageController() {
+        return new ExhibitsPageController();
     }
 }

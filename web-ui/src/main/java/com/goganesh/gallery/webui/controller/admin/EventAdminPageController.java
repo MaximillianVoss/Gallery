@@ -18,7 +18,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin/events")
 @AllArgsConstructor
-public class EventPageController {
+public class EventAdminPageController {
 
     private static final String EVENT_TYPE_CODE = "EVENT_TYPE";
 

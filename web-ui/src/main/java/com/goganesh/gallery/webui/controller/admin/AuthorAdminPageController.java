@@ -15,7 +15,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin/authors")
 @AllArgsConstructor
-public class AuthorPageController {
+public class AuthorAdminPageController {
 
     private final AuthorService authorService;
 

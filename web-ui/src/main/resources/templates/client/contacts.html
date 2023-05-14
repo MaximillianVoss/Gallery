@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/client/head_fragment.html :: head(title='Галлерея', description='Художественная галлерея')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/client/header_fragment :: head(main='contacts')}"></header>
+
+<main>
+
+    <h1>Контакты</h1>
+    <h2>По общим вопросам:</h2>
+    <p>ВТ, СР, ВС: 10:00 — 18:00</p>
+    <p>ЧТ, ПТ, СБ: 10:00 — 21:00</p>
+    <p>+7 (495) 957 07 27</p>
+    <p>gallery@mail.ru</p>
+
+    <h2>По вопросам сотрудничества^</h2>
+    <p>+7 (495) 957-07-27, доб.4</p>
+    <p>gallery-administration@mail.ru</p>
+
+</main>
+<footer th:replace="~{fragments/client/footer_fragment :: footer}"></footer>
+
+</body>
+</html>
