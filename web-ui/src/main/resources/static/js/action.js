@@ -2,11 +2,13 @@ function updateExhibitObj() {
     let obj = new Object();
     obj.id = $("#id-input").attr("value");
     obj.name = $("#name-input").val();
-    obj.description = $("#description-input").val();
     obj.code = $("#code-input").val();
     obj.author_id = $("#author-input").val();
     obj.type_id = $("#type-input").val();
     obj.storage_condition_id = $("#storage-condition-input").val();
+    obj.year = $("#year-input").val();
+    obj.length = $("#length-input").val();
+    obj.width = $("#width-input").val();
 
     let json = JSON.stringify(obj);
     $.ajax({
@@ -24,10 +26,12 @@ function updateExhibitObj() {
 function createExhibitObj() {
     let obj = new Object();
     obj.name = $("#name-input").val();
-    obj.description = $("#description-input").val();
     obj.author_id = $("#author-input").val();
     obj.type_id = $("#type-input").val();
     obj.storage_condition_id = $("#storage-condition-input").val();
+    obj.year = $("#year-input").val();
+    obj.length = $("#length-input").val();
+    obj.width = $("#width-input").val();
 
     let json = JSON.stringify(obj);
     $.ajax({

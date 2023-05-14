@@ -26,7 +26,6 @@
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="name" type="VARCHAR(255)" remarks="название экспоната"/>
-            <column name="description" type="VARCHAR(255)" remarks="описание экспоната"/>
             <column name="code" type="VARCHAR(255)" remarks="артикул"/>
             <column name="author_id" type="UUID" remarks="автор">
                 <constraints nullable="false"/>
@@ -35,6 +34,15 @@
                 <constraints nullable="false"/>
             </column>
             <column name="storage_condition_id" type="UUID" remarks="тип условия хранения">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="integer" remarks="год">
+                <constraints nullable="false"/>
+            </column>
+            <column name="length" type="integer" remarks="длина см">
+                <constraints nullable="false"/>
+            </column>
+            <column name="width" type="integer" remarks="ширина см">
                 <constraints nullable="false"/>
             </column>
         </createTable>

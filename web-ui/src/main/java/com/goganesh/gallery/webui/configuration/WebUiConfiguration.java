@@ -54,8 +54,8 @@ public class WebUiConfiguration {
     }
 
     @Bean
-    public EventsPageController eventsPageController() {
-        return new EventsPageController();
+    public EventsPageController eventsPageController(EventService eventService) {
+        return new EventsPageController(eventService);
     }
 
     @Bean

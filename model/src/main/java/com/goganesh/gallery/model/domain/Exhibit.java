@@ -16,7 +16,6 @@ import javax.persistence.*;
 public class Exhibit extends BaseEntity {
 
     private String name;
-    private String description;
     private String code;
 
     @ManyToOne
@@ -30,5 +29,9 @@ public class Exhibit extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "storage_condition_id")
     private Dictionary storageCondition;
+
+    private Integer year;
+    private Integer length;
+    private Integer width;
 
 }

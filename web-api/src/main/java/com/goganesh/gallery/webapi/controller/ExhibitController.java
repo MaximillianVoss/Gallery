@@ -34,8 +34,11 @@ public class ExhibitController {
     public Exhibit putExhibit(@Valid @RequestBody PutExhibitRequest putExhibitRequest) {
         Exhibit exhibit = exhibitService.findById(putExhibitRequest.getId())
                 .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", putExhibitRequest.getId().toString()));
+
         exhibit.setName(putExhibitRequest.getName());
-        exhibit.setDescription(putExhibitRequest.getDescription());
+        exhibit.setYear(putExhibitRequest.getYear());
+        exhibit.setLength(putExhibitRequest.getLength());
+        exhibit.setWidth(putExhibitRequest.getWidth());
 
         Author author = authorService.findById(putExhibitRequest.getAuthorId())
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", putExhibitRequest.getAuthorId().toString()));
@@ -55,8 +58,12 @@ public class ExhibitController {
     @PostMapping
     public Exhibit postExhibit(@Valid @RequestBody PostExhibitRequest postExhibitRequest) {
         Exhibit exhibit = new Exhibit();
+
         exhibit.setName(postExhibitRequest.getName());
-        exhibit.setDescription(postExhibitRequest.getDescription());
+        exhibit.setYear(postExhibitRequest.getYear());
+        exhibit.setLength(postExhibitRequest.getLength());
+        exhibit.setWidth(postExhibitRequest.getWidth());
+
         Author author = authorService.findById(postExhibitRequest.getAuthorId())
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", postExhibitRequest.getAuthorId().toString()));
         exhibit.setAuthor(author);

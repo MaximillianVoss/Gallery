@@ -1,6 +1,7 @@
 insert into dictionary values ('a49ad1ad-8deb-48e4-bfc9-bd4c82a35d59', null, 'Тип живописи', 'EXH_TYPE');
 insert into dictionary values ('9ae21a22-3766-40fe-a4b5-8e65b8e32f55', 'a49ad1ad-8deb-48e4-bfc9-bd4c82a35d59', 'Картина', 'EXH_TYPE_PICTURE');
 insert into dictionary values ('1a46cebe-e9c5-4d7c-ac57-0985413869e2', 'a49ad1ad-8deb-48e4-bfc9-bd4c82a35d59', 'Фреска', 'EXH_TYPE_FRESCO');
+insert into dictionary values ('4bc49883-5c6b-4181-8d92-d8961fa942e1', 'a49ad1ad-8deb-48e4-bfc9-bd4c82a35d59', 'Фотография', 'EXH_TYPE_PHOTO');
 
 insert into dictionary values ('e94d3338-df0d-4050-a6be-d6f861af55a8', null, 'Тип вложения', 'EXH_ATTACH_TYPE');
 insert into dictionary values ('e86eebd9-ea44-4449-b519-7c792f740664', 'e94d3338-df0d-4050-a6be-d6f861af55a8', 'Документ', 'EXH_ATTACH_TYPE_DOCUMENT');

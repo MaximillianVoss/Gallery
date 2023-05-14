@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.UUID;
 
 @Data
@@ -13,7 +14,6 @@ public class PutExhibitRequest {
     private UUID id;
     @NotBlank
     private String name;
-    private String description;
     @NotNull
     @JsonProperty("author_id")
     private UUID authorId;
@@ -23,5 +23,14 @@ public class PutExhibitRequest {
     @NotNull
     @JsonProperty("storage_condition_id")
     private UUID storageConditionId;
+    @NotNull
+    @Positive
+    private Integer year;
+    @NotNull
+    @Positive
+    private Integer length;
+    @NotNull
+    @Positive
+    private Integer width;
 
 }
