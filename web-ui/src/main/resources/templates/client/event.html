@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/client/head_fragment.html :: head(title='Мероприятие', description='Мероприятие галереи')}">
+</head>
+
+<body class="container">
+<header th:replace="~{fragments/client/header_fragment :: head(main='events')}"></header>
+
+<main>
+    <h1 th:text="${event.name}">Мероприятие</h1>
+    <p th:text="${event.description}"
+       class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+        semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+        commodo.</p>
+
+    <h2>Экспонаты</h2>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-3">
+                <tr th:each="exhibit: ${exhibits}">
+                    <td th:replace="~{fragments/client/exhibit_card :: exhibit_card(${exhibit})}"/>
+                </tr>
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer th:replace="~{fragments/client/footer_fragment :: footer}"></footer>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.goganesh.gallery.model.service;
 
+import com.goganesh.gallery.model.domain.Event;
 import com.goganesh.gallery.model.domain.Exhibit;
 import com.goganesh.gallery.model.repository.ExhibitRepository;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,5 +46,10 @@ public class ExhibitService {
         UUID uuid = UUID.randomUUID();
         long l = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
         return Long.toString(l, Character.MAX_RADIX);
+    }
+
+    @Deprecated
+    public List<Exhibit> findAllByEvent(Event event) {
+        return exhibitRepository.findAllByEvent(event);
     }
 }

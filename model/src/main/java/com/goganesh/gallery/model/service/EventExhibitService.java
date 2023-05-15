@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -29,5 +30,10 @@ public class EventExhibitService {
 
     public EventExhibit save(EventExhibit eventExhibit) {
         return eventExhibitRepository.save(eventExhibit);
+    }
+
+    @Deprecated
+    public List<EventExhibit> findAll() {
+        return eventExhibitRepository.findAll();
     }
 }

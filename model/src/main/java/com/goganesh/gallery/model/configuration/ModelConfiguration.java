@@ -1,5 +1,6 @@
 package com.goganesh.gallery.model.configuration;
 
+import com.goganesh.gallery.model.domain.EventExhibit;
 import com.goganesh.gallery.model.repository.*;
 import com.goganesh.gallery.model.service.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -66,8 +67,8 @@ public class ModelConfiguration {
     }
 
     @Bean
-    public EventService eventService(EventRepository eventRepository) {
-        return new EventService(eventRepository);
+    public EventService eventService(EventRepository eventRepository, EventExhibitService eventExhibitService) {
+        return new EventService(eventRepository, eventExhibitService);
     }
 
     @Bean
