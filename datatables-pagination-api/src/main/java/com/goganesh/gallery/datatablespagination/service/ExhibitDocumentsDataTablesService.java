@@ -1,6 +1,5 @@
 package com.goganesh.gallery.datatablespagination.service;
 
-import com.goganesh.gallery.datatablespagination.data.DataServiceBase;
 import com.goganesh.gallery.datatablespagination.dto.ExhibitDocumentDataTablesDto;
 import com.goganesh.gallery.datatablespagination.mapper.ExhibitDocumentMapper;
 import com.goganesh.gallery.datatablespagination.model.ExtendedPaginationCriteria;

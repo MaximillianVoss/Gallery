@@ -32,5 +32,11 @@ public class PutExhibitRequest {
     @NotNull
     @Positive
     private Integer width;
+    @NotNull
+    @JsonProperty("style_id")
+    private UUID styleId;
+    @NotNull
+    @JsonProperty("genre_id")
+    private UUID genreId;
 
 }

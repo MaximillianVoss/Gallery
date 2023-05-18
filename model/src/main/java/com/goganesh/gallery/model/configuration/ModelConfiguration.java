@@ -1,6 +1,5 @@
 package com.goganesh.gallery.model.configuration;
 
-import com.goganesh.gallery.model.domain.EventExhibit;
 import com.goganesh.gallery.model.repository.*;
 import com.goganesh.gallery.model.service.*;
 import org.springframework.beans.factory.annotation.Qualifier;

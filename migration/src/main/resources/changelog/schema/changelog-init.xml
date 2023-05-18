@@ -45,6 +45,12 @@
             <column name="width" type="integer" remarks="ширина см">
                 <constraints nullable="false"/>
             </column>
+            <column name="style_id" type="UUID" remarks="тип стиля">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_id" type="UUID" remarks="тип жанра">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createTable tableName="author" remarks="авторы работ">
@@ -158,6 +164,18 @@
         <addForeignKeyConstraint baseColumnNames="storage_condition_id"
                                  baseTableName="exhibit"
                                  constraintName="fk_exhibit_storage_condition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dictionary"/>
+
+        <addForeignKeyConstraint baseColumnNames="style_id"
+                                 baseTableName="exhibit"
+                                 constraintName="fk_exhibit_style_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dictionary"/>
+
+        <addForeignKeyConstraint baseColumnNames="genre_id"
+                                 baseTableName="exhibit"
+                                 constraintName="fk_exhibit_genre_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dictionary"/>
 

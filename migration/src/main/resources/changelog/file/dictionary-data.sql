@@ -22,3 +22,23 @@ insert into dictionary values ('d7cdc140-6320-4a42-ad62-0be978e55b0c', '25c17414
 insert into dictionary values ('fee27cff-0f8e-4ca9-8836-827268aea6ef', null, 'Тип условия хранения', 'STORAGE_CONDITION_TYPE');
 insert into dictionary values ('9fab0f15-2309-4eea-bdf1-7041aa40f26e', 'fee27cff-0f8e-4ca9-8836-827268aea6ef', 'Специальное хранение', 'STORAGE_CONDITION_TYPE_SPECIAL');
 insert into dictionary values ('18fa6745-9860-4870-afe9-269f1c304186', 'fee27cff-0f8e-4ca9-8836-827268aea6ef', 'Обычное хранение', 'STORAGE_CONDITION_TYPE_REGULAR');
+
+insert into dictionary values ('47a57598-8673-4677-a20d-d813320305c9', null, 'Тип стиля', 'STYLE_TYPE');
+insert into dictionary values ('1d19afa9-adc3-4712-ac6c-c3eba2290de8', '47a57598-8673-4677-a20d-d813320305c9', 'Ренессанс', 'STYLE_TYPE_RENAISSANCE');
+insert into dictionary values ('1328ab25-0ca9-43ce-bd65-913ed2f5f3dc', '47a57598-8673-4677-a20d-d813320305c9', 'Маньеризм', 'STYLE_TYPE_MANNERISM');
+insert into dictionary values ('c5e5019f-0c1f-48a7-a466-1ece6ed991c3', '47a57598-8673-4677-a20d-d813320305c9', 'Барокко', 'STYLE_TYPE_BAROQUE');
+insert into dictionary values ('58f53eaf-829c-4cef-8915-5bb14a77462f', '47a57598-8673-4677-a20d-d813320305c9', 'Классицизм', 'STYLE_TYPE_CLASSICISM');
+insert into dictionary values ('44e84185-e957-4a60-bda8-9d314f7342e3', '47a57598-8673-4677-a20d-d813320305c9', 'Романтизм', 'STYLE_TYPE_ROMANTICISM');
+insert into dictionary values ('70c4f356-5d8c-4b9d-843c-1e09d3dde728', '47a57598-8673-4677-a20d-d813320305c9', 'Импрессионизм', 'STYLE_TYPE_IMPRESSIONISM');
+insert into dictionary values ('769e0745-ce0c-4be5-9533-8757c4363c3b', '47a57598-8673-4677-a20d-d813320305c9', 'Экспрессионизм', 'STYLE_TYPE_EXPRESSIONISM');
+insert into dictionary values ('b06abaaa-4a22-42f7-a75a-5123616c0ee9', '47a57598-8673-4677-a20d-d813320305c9', 'Авангардизм', 'STYLE_TYPE_AVANGARDISM');
+
+insert into dictionary values ('69edff2d-1a89-4ca7-a4ce-4f822716487c', null, 'Тип жанра', 'GENRE_TYPE');
+insert into dictionary values ('a4edb8d9-18b0-44ca-a145-deacdacf8a1c', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Портрет', 'GENRE_TYPE_PORTRAIT');
+insert into dictionary values ('e628340a-8095-434e-8f35-659b26fac6ed', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Пейзаж', 'GENRE_TYPE_SCENERY');
+insert into dictionary values ('e9bed2ca-a261-4c52-94ed-7561c66c29fd', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Марина', 'GENRE_TYPE_MARINA');
+insert into dictionary values ('c9d862c4-a39a-4ec9-8b12-eee9c3b35abf', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Исторический', 'GENRE_TYPE_HISTORICAL');
+insert into dictionary values ('1aac8c9d-5feb-4c89-af21-c743c3b02fe2', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Батальный', 'GENRE_TYPE_BATTLE');
+insert into dictionary values ('3613f968-09ef-4722-b202-c76cde82bc51', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Анималистика', 'GENRE_TYPE_ANIMALISM');
+insert into dictionary values ('5f4bcad3-7054-437a-9cc6-fb4f37f549c7', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Бытовой', 'GENRE_TYPE_DOMESTIC');
+insert into dictionary values ('86e1c45d-ea55-4d84-9028-4a21e51b9387', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Натюрморт', 'GENRE_TYPE_STILLLIFE');

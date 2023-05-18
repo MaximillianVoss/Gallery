@@ -1,4 +1,4 @@
-package com.goganesh.gallery.datatablespagination.data;
+package com.goganesh.gallery.datatablespagination.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

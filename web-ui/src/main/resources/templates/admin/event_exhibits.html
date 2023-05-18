@@ -8,8 +8,7 @@
 <header th:replace="~{fragments/admin/header_fragment :: head(main='events')}"></header>
 
 <main>
-    <h1 th:text="${event.name}">Мероприятие</h1>
-    <h2>Экспонаты мероприятия:</h2>
+    <h1 th:text="'Экспонаты мероприятия ' + ${event.name}">Мероприятие</h1>
 
     <div class="d-flex gap-2 py-5">
         <button onclick="deleteEventExhibitObj()" id="delete-exhibit" class="btn btn-primary">Удалить</button>

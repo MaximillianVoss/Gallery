@@ -26,6 +26,8 @@ public class ExhibitAdminPageController {
     private static final String PLACE_TYPE_CODE = "PLACE_TYPE";
     private static final String ATTACH_TYPE_CODE = "EXH_ATTACH_TYPE";
     private static final String STORAGE_CONDITION_TYPE_CODE = "STORAGE_CONDITION_TYPE";
+    private static final String STYLE_TYPE_CODE = "STYLE_TYPE";
+    private static final String GENRE_TYPE_CODE = "GENRE_TYPE";
 
     private final ExhibitService exhibitService;
     private final AuthorService authorService;
@@ -40,17 +42,11 @@ public class ExhibitAdminPageController {
     public String createExhibitPage(Model model) {
         List<Author> authors = authorService.findAll();
 
-        Dictionary type = dictionaryService.findByCode(EXHIBIT_TYPE_CODE)
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", EXHIBIT_TYPE_CODE));
-        List<Dictionary> types = dictionaryService.findAllByDictionary(type);
-
-        Dictionary storageCondition = dictionaryService.findByCode(STORAGE_CONDITION_TYPE_CODE)
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", STORAGE_CONDITION_TYPE_CODE));
-        List<Dictionary> storageConditions = dictionaryService.findAllByDictionary(storageCondition);
-
         model.addAttribute("authors", authors);
-        model.addAttribute("types", types);
-        model.addAttribute("storageConditions", storageConditions);
+        model.addAttribute("types", findDictionaryByCode(EXHIBIT_TYPE_CODE));
+        model.addAttribute("storageConditions", findDictionaryByCode(STORAGE_CONDITION_TYPE_CODE));
+        model.addAttribute("styles", findDictionaryByCode(STYLE_TYPE_CODE));
+        model.addAttribute("genres", findDictionaryByCode(GENRE_TYPE_CODE));
 
         return "admin/create_exhibit";
     }
@@ -60,48 +56,42 @@ public class ExhibitAdminPageController {
         Exhibit exhibit = exhibitService.findById(id).orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", id.toString()));
         List<Author> authors = authorService.findAll();
 
-        Dictionary type = dictionaryService.findByCode(EXHIBIT_TYPE_CODE)
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", EXHIBIT_TYPE_CODE));
-        List<Dictionary> types = dictionaryService.findAllByDictionary(type);
-
-        Dictionary storageCondition = dictionaryService.findByCode(STORAGE_CONDITION_TYPE_CODE)
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", STORAGE_CONDITION_TYPE_CODE));
-        List<Dictionary> storageConditions = dictionaryService.findAllByDictionary(storageCondition);
-
-
         model.addAttribute("exhibit", exhibit);
         model.addAttribute("authors", authors);
-        model.addAttribute("types", types);
-        model.addAttribute("storageConditions", storageConditions);
+        model.addAttribute("types", findDictionaryByCode(EXHIBIT_TYPE_CODE));
+        model.addAttribute("storageConditions", findDictionaryByCode(STORAGE_CONDITION_TYPE_CODE));
+        model.addAttribute("styles", findDictionaryByCode(STYLE_TYPE_CODE));
+        model.addAttribute("genres", findDictionaryByCode(GENRE_TYPE_CODE));
 
         return "admin/update_exhibit";
     }
 
     @GetMapping("/{id}/places")
     public String exhibitPlacePage(@PathVariable("id") UUID id,
-                              Model model) {
+                                   Model model) {
         Exhibit exhibit = exhibitService.findById(id).orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", id.toString()));
-        Dictionary dictionary = dictionaryService.findByCode(PLACE_TYPE_CODE)
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", PLACE_TYPE_CODE));
-        List<Dictionary> places = dictionaryService.findAllByDictionary(dictionary);
 
         model.addAttribute("exhibit", exhibit);
-        model.addAttribute("places", places);
+        model.addAttribute("places", findDictionaryByCode(PLACE_TYPE_CODE));
 
         return "admin/place_exhibits";
     }
 
     @GetMapping("/{id}/documents")
     public String exhibitDocumentsPage(@PathVariable("id") UUID id,
-                              Model model) {
+                                       Model model) {
         Exhibit exhibit = exhibitService.findById(id).orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", id.toString()));
-        Dictionary attachment = dictionaryService.findByCode(ATTACH_TYPE_CODE)
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", ATTACH_TYPE_CODE));
-        List<Dictionary> attachments = dictionaryService.findAllByDictionary(attachment);
 
         model.addAttribute("exhibit", exhibit);
-        model.addAttribute("types", attachments);
+        model.addAttribute("types", findDictionaryByCode(ATTACH_TYPE_CODE));
 
         return "admin/exhibit_document";
     }
+
+    public List<Dictionary> findDictionaryByCode(String code) {
+        Dictionary type = dictionaryService.findByCode(code)
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "code", code));
+        return dictionaryService.findAllByDictionary(type);
+    }
+
 }

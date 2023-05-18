@@ -8,7 +8,7 @@
 <header th:replace="~{fragments/admin/header_fragment :: head(main='authors')}"></header>
 
 <main>
-    <h1 th:text="${author.name}">Автор</h1>
+    <h1 th:text="'Редактирование автора ' + ${author.name}">Автор</h1>
     <h2>Атрибуты:</h2>
     <form>
         <div class="form-group">

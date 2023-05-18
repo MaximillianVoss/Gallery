@@ -8,8 +8,7 @@
 <header th:replace="~{fragments/admin/header_fragment :: head(main='exhibits')}"></header>
 
 <main>
-    <h1 th:text="${exhibit.name}">Экспонат</h1>
-    <h2>Документы экспоната:</h2>
+    <h1 th:text="'Документы экспоната ' + ${exhibit.name}">Экспонат</h1>
 
     <div class="d-flex gap-2 py-5">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"

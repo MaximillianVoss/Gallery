@@ -8,7 +8,7 @@
 <header th:replace="~{fragments/admin/header_fragment :: head(main='exhibits')}"></header>
 
 <main>
-    <h1>Создать экспонат</h1>
+    <h1>Создание экспоната</h1>
     <h2>Атрибуты:</h2>
     <form>
         <div class="form-group">
@@ -45,17 +45,35 @@
 
         <div class="form-group">
             <label for="year-input">Год</label>
-            <input type="number" class="form-control" id="year-input">
+            <input type="number" class="form-control" id="year-input" required>
         </div>
 
         <div class="form-group">
             <label for="length-input">Длина</label>
-            <input type="number" class="form-control" id="length-input">
+            <input type="number" class="form-control" id="length-input" required>
         </div>
 
         <div class="form-group">
             <label for="width-input">Ширина</label>
-            <input type="number" class="form-control" id="width-input">
+            <input type="number" class="form-control" id="width-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="style-input" class="form-label">Стиль</label>
+            <select class="form-select" id="style-input" required>
+                <option th:each="style : ${styles}" th:value="${style.id}" th:text="${style.name}">
+                    United States
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="genre-input" class="form-label">Жанр</label>
+            <select class="form-select" id="genre-input" required>
+                <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}">
+                    United States
+                </option>
+            </select>
         </div>
 
         <hr class="my-4">

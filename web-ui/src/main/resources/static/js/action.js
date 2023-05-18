@@ -9,6 +9,8 @@ function updateExhibitObj() {
     obj.year = $("#year-input").val();
     obj.length = $("#length-input").val();
     obj.width = $("#width-input").val();
+    obj.style_id = $("#style-input").val();
+    obj.genre_id = $("#genre-input").val();
 
     let json = JSON.stringify(obj);
     $.ajax({
@@ -32,6 +34,8 @@ function createExhibitObj() {
     obj.year = $("#year-input").val();
     obj.length = $("#length-input").val();
     obj.width = $("#width-input").val();
+    obj.style_id = $("#style-input").val();
+    obj.genre_id = $("#genre-input").val();
 
     let json = JSON.stringify(obj);
     $.ajax({

@@ -1,4 +1,4 @@
-package com.goganesh.gallery.datatablespagination.data;
+package com.goganesh.gallery.datatablespagination.service;
 
 public class TableDataException extends Exception {
     public TableDataException(String string, Throwable ex) {

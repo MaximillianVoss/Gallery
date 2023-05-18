@@ -1,7 +1,7 @@
 package com.goganesh.gallery.datatablespagination.controller;
 
-import com.goganesh.gallery.datatablespagination.SimplePaginator;
-import com.goganesh.gallery.datatablespagination.TablePaginator;
+import com.goganesh.gallery.datatablespagination.service.SimplePaginator;
+import com.goganesh.gallery.datatablespagination.service.TablePaginator;
 import com.goganesh.gallery.datatablespagination.model.PaginationCriteria;
 import com.goganesh.gallery.datatablespagination.model.TablePage;
 import com.goganesh.gallery.datatablespagination.service.EventDataTablesService;

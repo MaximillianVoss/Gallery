@@ -27,6 +27,14 @@ public class Exhibit extends BaseEntity {
     private Dictionary type;
 
     @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Dictionary genre;
+
+    @ManyToOne
+    @JoinColumn(name = "style_id")
+    private Dictionary style;
+
+    @ManyToOne
     @JoinColumn(name = "storage_condition_id")
     private Dictionary storageCondition;
 

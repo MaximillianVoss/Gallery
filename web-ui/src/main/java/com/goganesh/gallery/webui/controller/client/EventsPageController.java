@@ -7,11 +7,11 @@ import com.goganesh.gallery.model.service.EventService;
 import com.goganesh.gallery.model.service.ExhibitService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +36,18 @@ public class EventsPageController {
 
         return "client/events";
     }
+
+    @GetMapping("/recommend")
+    public String eventsRecommendPage() {
+        return "client/events_recommend_form";
+    }
+
+    @PostMapping(value = "/recommend", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String getEventsRecommend(@RequestParam MultiValueMap<String,String> paramMap) {
+
+        return "client/events_recommend";
+    }
+
 
     @GetMapping("/{id}")
     public String eventPage(@PathVariable UUID id,

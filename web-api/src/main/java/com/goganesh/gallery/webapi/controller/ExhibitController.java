@@ -52,6 +52,14 @@ public class ExhibitController {
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getTypeId().toString()));
         exhibit.setStorageCondition(storageCondition);
 
+        Dictionary style = dictionaryService.findById(putExhibitRequest.getStyleId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getStyleId().toString()));
+        exhibit.setStyle(style);
+
+        Dictionary genre = dictionaryService.findById(putExhibitRequest.getGenreId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getGenreId().toString()));
+        exhibit.setGenre(genre);
+
         return exhibitService.update(exhibit);
     }
 
@@ -75,6 +83,14 @@ public class ExhibitController {
         Dictionary storageCondition = dictionaryService.findById(postExhibitRequest.getStorageConditionId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getTypeId().toString()));
         exhibit.setStorageCondition(storageCondition);
+
+        Dictionary style = dictionaryService.findById(postExhibitRequest.getStyleId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getStyleId().toString()));
+        exhibit.setStyle(style);
+
+        Dictionary genre = dictionaryService.findById(postExhibitRequest.getGenreId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getGenreId().toString()));
+        exhibit.setGenre(genre);
 
         return exhibitService.create(exhibit);
     }

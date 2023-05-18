@@ -1,7 +1,5 @@
-package com.goganesh.gallery.datatablespagination;
+package com.goganesh.gallery.datatablespagination.service;
 
-import com.goganesh.gallery.datatablespagination.data.TableDataException;
-import com.goganesh.gallery.datatablespagination.data.TableDataService;
 import com.goganesh.gallery.datatablespagination.model.PaginationCriteria;
 import com.goganesh.gallery.datatablespagination.model.TablePage;
 

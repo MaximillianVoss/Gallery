@@ -1,4 +1,4 @@
-package com.goganesh.gallery.datatablespagination.data;
+package com.goganesh.gallery.datatablespagination.service;
 
 import com.goganesh.gallery.datatablespagination.model.PaginationCriteria;
 

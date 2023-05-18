@@ -8,7 +8,7 @@
 <header th:replace="~{fragments/admin/header_fragment :: head(main='exhibits')}"></header>
 
 <main>
-    <h1 th:text="${exhibit.name}">Экспонат</h1>
+    <h1 th:text="'Редактирование экспоната ' + ${exhibit.name}">Экспонат</h1>
     <h2>Атрибуты:</h2>
     <form>
         <div class="form-group">
@@ -48,7 +48,8 @@
         <div class="form-group">
             <label for="storage-condition-input" class="form-label">Условия хранения</label>
             <select class="form-select" id="storage-condition-input" required>
-                <option th:each="storageCondition : ${storageConditions}" th:value="${storageCondition.id}" th:text="${storageCondition.name}"
+                <option th:each="storageCondition : ${storageConditions}" th:value="${storageCondition.id}"
+                        th:text="${storageCondition.name}"
                         th:selected="${storageCondition.id}==${exhibit.storageCondition.id}">United States
                 </option>
             </select>
@@ -70,6 +71,26 @@
             <label for="width-input">Ширина</label>
             <input type="number" class="form-control" id="width-input"
                    th:value="${exhibit.width}">
+        </div>
+
+        <div class="form-group">
+            <label for="style-input" class="form-label">Стиль</label>
+            <select class="form-select" id="style-input" required>
+                <option th:each="style : ${styles}" th:value="${style.id}" th:text="${style.name}"
+                        th:selected="${style.id}==${exhibit.style.id}">
+                    United States
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="genre-input" class="form-label">Жанр</label>
+            <select class="form-select" id="genre-input" required>
+                <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"
+                        th:selected="${genre.id}==${exhibit.genre.id}">
+                    United States
+                </option>
+            </select>
         </div>
 
         <hr class="my-4">
