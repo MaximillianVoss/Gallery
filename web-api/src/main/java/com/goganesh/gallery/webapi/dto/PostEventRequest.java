@@ -10,13 +10,18 @@ import java.util.UUID;
 
 @Data
 public class PostEventRequest {
+
     @NotBlank
     private String name;
+
     private String description;
+
     @NotNull
     private LocalDate start;
+
     @NotNull
     private LocalDate end;
+
     @NotNull
     @JsonProperty("type_id")
     private UUID typeId;

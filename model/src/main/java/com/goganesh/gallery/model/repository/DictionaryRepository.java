@@ -12,4 +12,6 @@ public interface DictionaryRepository extends JpaRepository<Dictionary, UUID> {
     Optional<Dictionary> findByCode(String code);
 
     List<Dictionary> findAllByDictionary(Dictionary dictionary);
+
+    List<Dictionary> findAllByDictionary_Code(String code);
 }

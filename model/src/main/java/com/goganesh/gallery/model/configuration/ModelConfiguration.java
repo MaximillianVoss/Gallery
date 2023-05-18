@@ -96,4 +96,9 @@ public class ModelConfiguration {
                                                  @Value("${com.goganesh.gallery.model.file-storage-service.exhibit.document.directory}") String baseDirectory) {
         return new ExhibitFileService(exhibitFileRepository, fileStorageService, baseDirectory);
     }
+
+    @Bean
+    public RecommendService recommendService(EventRepository eventRepository) {
+        return new RecommendService(eventRepository);
+    }
 }

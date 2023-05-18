@@ -12,13 +12,18 @@ import java.util.UUID;
 public class PutEventRequest {
     @NotNull
     private UUID id;
+
     @NotBlank
     private String name;
+
     private String description;
+
     @NotNull
     private LocalDate start;
+
     @NotNull
     private LocalDate end;
+
     @NotNull
     @JsonProperty("type_id")
     private UUID typeId;

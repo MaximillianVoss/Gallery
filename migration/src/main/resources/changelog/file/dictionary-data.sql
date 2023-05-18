@@ -42,3 +42,13 @@ insert into dictionary values ('1aac8c9d-5feb-4c89-af21-c743c3b02fe2', '69edff2d
 insert into dictionary values ('3613f968-09ef-4722-b202-c76cde82bc51', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Анималистика', 'GENRE_TYPE_ANIMALISM');
 insert into dictionary values ('5f4bcad3-7054-437a-9cc6-fb4f37f549c7', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Бытовой', 'GENRE_TYPE_DOMESTIC');
 insert into dictionary values ('86e1c45d-ea55-4d84-9028-4a21e51b9387', '69edff2d-1a89-4ca7-a4ce-4f822716487c', 'Натюрморт', 'GENRE_TYPE_STILLLIFE');
+
+insert into dictionary values ('1eeea0b3-0034-4c99-bebe-7779d4441b09', null, 'Тип пола', 'SEX_TYPE');
+insert into dictionary values ('925bd253-3405-4f48-b316-17351b97d008', '1eeea0b3-0034-4c99-bebe-7779d4441b09', 'Мужской', 'SEX_TYPE_MALE');
+insert into dictionary values ('2403e44f-7272-4622-a9ef-e22c6d4b180f', '1eeea0b3-0034-4c99-bebe-7779d4441b09', 'Женский', 'SEX_TYPE_FEMALE');
+
+insert into dictionary values ('214f8858-27af-4d7d-8cb0-8e8bc3a64805', null, 'Тип образования', 'EDUCATION_TYPE');
+insert into dictionary values ('cf95ce84-70bc-477b-82ec-964f11e75532', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Среднее', 'EDUCATION_TYPE_MIDDLE');
+insert into dictionary values ('585178e2-b91e-433c-863b-275dddf1b172', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Средне специальное', 'EDUCATION_TYPE_MIDDLE_SPECIAL');
+insert into dictionary values ('6102de63-2dbc-4c54-8a82-598e3da084f2', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Неоконченное высшее', 'EDUCATION_TYPE_ALMOST_HIGN');
+insert into dictionary values ('6595f8a5-53e2-4835-b5e0-9b68409d1c81', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Высшее', 'EDUCATION_TYPE_HIGN');

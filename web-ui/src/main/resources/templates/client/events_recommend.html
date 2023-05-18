@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/client/head_fragment.html :: head(title='Мероприятия', description='Мероприятия галереи')}">
+<head th:replace="~{fragments/client/head_fragment.html :: head(title='Подобрать мероприятие', description='Страница для подбора мероприятий галереи')}">
 </head>
 
 <body class="container">
 <header th:replace="~{fragments/client/header_fragment :: head(main='events')}"></header>
 
 <main>
-    <h1>Мероприятия</h1>
+    <h1>Рекомендованные мероприятия</h1>
 
     <a th:href="@{/events/recommendForm}" class="btn btn-md btn-outline-secondary"
        href="#">Подобрать мероприятие</a>
@@ -25,6 +25,6 @@
 
 </main>
 <footer th:replace="~{fragments/client/footer_fragment :: footer}"></footer>
-
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
 </body>
 </html>

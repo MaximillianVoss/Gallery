@@ -1,3 +1,22 @@
+function recommendEvents() {
+    let obj = new Object();
+    obj.age = $("#age-input").val();
+    obj.edu_id = $("#edu-input").val();
+    obj.sex_id = $("#sex-input").val();
+    obj.style_id = $("#style-input").val();
+    obj.genre_id = $("#genre-input").val();
+
+    let json = JSON.stringify(obj);
+    $.ajax({
+        url: "http://localhost:8080/events/recommendForm",
+        type: "POST",
+        data: json,
+        contentType: 'application/json',
+        success: function (data) {
+        }
+    })
+}
+
 function updateExhibitObj() {
     let obj = new Object();
     obj.id = $("#id-input").attr("value");
@@ -258,7 +277,7 @@ function downloadFileTest() {
             let reader = new FileReader();
             reader.readAsDataURL(blob); // converts the blob to base64 and calls onload
 
-            reader.onload = function() {
+            reader.onload = function () {
                 link.href = reader.result;
                 link.click();
             };

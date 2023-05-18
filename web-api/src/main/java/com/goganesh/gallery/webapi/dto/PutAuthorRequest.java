@@ -10,6 +10,7 @@ import java.util.UUID;
 public class PutAuthorRequest {
     @NotNull
     private UUID id;
+
     @NotBlank
     private String name;
 

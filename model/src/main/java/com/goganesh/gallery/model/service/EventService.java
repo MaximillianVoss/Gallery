@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -38,5 +39,9 @@ public class EventService {
         return eventExhibitService.findAll()
                 .stream()
                 .collect(Collectors.groupingBy(EventExhibit::getEvent, Collectors.counting()));
+    }
+
+    public List<Event> findAllByIds(List<UUID> ids) {
+        return eventRepository.findAllByIdIn(ids);
     }
 }
