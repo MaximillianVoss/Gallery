@@ -79,6 +79,8 @@ public class EventController {
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("typeId")));
         event.setType(dictionary);
 
+        event = eventService.save(event);
+
         String imagePath = imageService.save(event, file.getInputStream(), file.getOriginalFilename());
         event.setImage(imagePath);
 

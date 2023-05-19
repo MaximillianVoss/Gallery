@@ -107,10 +107,11 @@ public class ExhibitController {
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("genreId")));
         exhibit.setGenre(genre);
 
+        exhibitService.create(exhibit);
+
         String imagePath = imageService.save(exhibit, file.getInputStream(), file.getOriginalFilename());
         exhibit.setImage(imagePath);
-
-        exhibitService.create(exhibit);
+        exhibitService.update(exhibit);
 
         return "redirect:/admin/exhibits";
 
