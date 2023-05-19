@@ -10,6 +10,6 @@ public class GalleryPageController {
 
     @GetMapping
     public String galleryPage() {
-        return "redirect:client/events";
+        return "redirect:/events";
     }
 }
