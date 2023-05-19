@@ -16,7 +16,8 @@
 
             <h3 th:text="${exhibit.author.name}" class="text-muted">It'll blow your mind.</h3>
 
-            <p th:text="'Год ' + ${exhibit.year} + '; Длина ' + ${exhibit.length} + ' см; Ширина ' + ${exhibit.width} + ' см;'"
+            <p th:utext="'Год ' + ${exhibit.year} + ';<br /> Длина ' + ${exhibit.length} + ' см;<br /> Ширина ' + ${exhibit.width} + ' см;<br />'
+                    + 'Стиль ' + ${exhibit.style.name} + ';<br />Жанр ' +  ${exhibit.genre.name} + ';<br />'"
                class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
                 semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
                 commodo.</p>

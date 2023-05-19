@@ -9,6 +9,7 @@
 
 <main>
     <h1 th:text="${event.name}">Мероприятие</h1>
+    <p th:text="${event.start} + ' - ' + ${event.end}" class="lead">Donec ullamcorper.</p>
     <p th:text="${event.description}"
        class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
         semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
