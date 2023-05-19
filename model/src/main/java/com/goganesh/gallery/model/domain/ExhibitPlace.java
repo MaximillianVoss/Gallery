@@ -29,8 +29,8 @@ public class ExhibitPlace extends BaseEntity {
     private String comment;
 
     @Column(name = "start_date")
-    public LocalDateTime start;
+    private LocalDateTime start;
 
     @Column(name = "end_date")
-    public LocalDateTime end = LocalDateTime.of(LocalDate.of(9999,1,1), LocalTime.of(1, 1));
+    private LocalDateTime end = LocalDateTime.of(LocalDate.of(9999,1,1), LocalTime.of(1, 1));
 }

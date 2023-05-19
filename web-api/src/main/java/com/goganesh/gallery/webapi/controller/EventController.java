@@ -5,24 +5,25 @@ import com.goganesh.gallery.model.domain.Event;
 import com.goganesh.gallery.model.domain.EventExhibit;
 import com.goganesh.gallery.model.domain.Exhibit;
 import com.goganesh.gallery.model.exception.NotFoundException;
-import com.goganesh.gallery.model.service.DictionaryService;
-import com.goganesh.gallery.model.service.EventExhibitService;
-import com.goganesh.gallery.model.service.EventService;
-import com.goganesh.gallery.model.service.ExhibitService;
-import com.goganesh.gallery.webapi.dto.PostEventRequest;
-import com.goganesh.gallery.webapi.dto.PutEventRequest;
+import com.goganesh.gallery.model.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import javax.validation.ValidationException;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController
+@Controller
 @RequestMapping("/api/v1/events")
 @PreAuthorize("hasAnyRole('TYPE_ADMIN')")
 @AllArgsConstructor
@@ -32,38 +33,58 @@ public class EventController {
     private final ExhibitService exhibitService;
     private final EventExhibitService eventExhibitService;
     private final DictionaryService dictionaryService;
+    private final ImageService imageService;
 
-    @PutMapping
-    public Event putEvent(@Valid @RequestBody PutEventRequest putEventRequest) {
-        Event event = eventService.findById(putEventRequest.getId())
-                .orElseThrow(() -> new NotFoundException(Event.class.getSimpleName(), "id", putEventRequest.getId().toString()));
-        event.setName(putEventRequest.getName());
-        event.setDescription(putEventRequest.getDescription());
+    @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String putEvent(@RequestParam Map<String, String> allParams,
+                          @RequestParam("imageFile") MultipartFile file) throws IOException {
+        Event event = eventService.findById(UUID.fromString(allParams.get("id")))
+                .orElseThrow(() -> new NotFoundException(Event.class.getSimpleName(), "id", allParams.get("id")));
+        event.setName(allParams.get("name"));
+        event.setDescription(allParams.get("description"));
 
-        event.setStart(putEventRequest.getStart());
-        event.setEnd(putEventRequest.getEnd());
+        event.setStart(LocalDate.parse(allParams.get("start")));
+        event.setEnd(LocalDate.parse(allParams.get("end")));
 
-        Dictionary dictionary = dictionaryService.findById(putEventRequest.getTypeId())
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putEventRequest.getTypeId().toString()));
+        Dictionary dictionary = dictionaryService.findById(UUID.fromString(allParams.get("typeId")))
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("typeId")));
         event.setType(dictionary);
 
-        return eventService.save(event);
+        if (Objects.nonNull(event.getImage())) {
+            imageService.delete(event);
+        }
+
+        String imagePath = null;
+        if (!file.isEmpty()) {
+            imagePath = imageService.save(event, file.getInputStream(), file.getOriginalFilename());
+        }
+        event.setImage(imagePath);
+
+        eventService.save(event);
+
+        return "redirect:/admin/events";
     }
 
-    @PostMapping
-    public Event postEvent(@Valid @RequestBody PostEventRequest postEventRequest) {
+    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String postEvent(@RequestParam Map<String, String> allParams,
+                           @RequestParam("imageFile") MultipartFile file) throws IOException {
         Event event = new Event();
-        event.setName(postEventRequest.getName());
-        event.setDescription(postEventRequest.getDescription());
+        event.setName(allParams.get("name"));
+        event.setDescription(allParams.get("description"));
 
-        event.setStart(postEventRequest.getStart());
-        event.setEnd(postEventRequest.getEnd());
+        event.setStart(LocalDate.parse(allParams.get("start")));
+        event.setEnd(LocalDate.parse(allParams.get("end")));
 
-        Dictionary dictionary = dictionaryService.findById(postEventRequest.getTypeId())
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postEventRequest.getTypeId().toString()));
+        Dictionary dictionary = dictionaryService.findById(UUID.fromString(allParams.get("typeId")))
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("typeId")));
         event.setType(dictionary);
 
-        return eventService.save(event);
+        String imagePath = imageService.save(event, file.getInputStream(), file.getOriginalFilename());
+        event.setImage(imagePath);
+
+        eventService.save(event);
+
+        return "redirect:/admin/events";
     }
 
     @DeleteMapping("/{eventId}/exhibits/{exhibitId}")
@@ -82,7 +103,7 @@ public class EventController {
     }
 
     @PostMapping("/{eventId}/exhibits/{exhibitId}")
-    public EventExhibit addEventExhibit(@PathVariable("eventId") UUID eventId,
+    public @ResponseBody EventExhibit addEventExhibit(@PathVariable("eventId") UUID eventId,
                                         @PathVariable("exhibitId") UUID exhibitId) {
         Event event = eventService.findById(eventId)
                 .orElseThrow(() -> new NotFoundException(Event.class.getSimpleName(), "id", eventId.toString()));

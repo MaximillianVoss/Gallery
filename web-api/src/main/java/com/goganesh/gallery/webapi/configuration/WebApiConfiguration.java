@@ -6,9 +6,12 @@ import com.goganesh.gallery.webapi.controller.AuthorController;
 import com.goganesh.gallery.webapi.controller.EventController;
 import com.goganesh.gallery.webapi.controller.ExhibitController;
 import com.goganesh.gallery.webapi.controller.FileController;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import java.awt.*;
 
 @Configuration
 @Import(ModelConfiguration.class)
@@ -18,8 +21,9 @@ public class WebApiConfiguration {
     public ExhibitController exhibitController(ExhibitService exhibitService,
                                                AuthorService authorService,
                                                DictionaryService dictionaryService,
-                                               ExhibitPlaceService exhibitPlaceService) {
-        return new ExhibitController(exhibitService, authorService, dictionaryService, exhibitPlaceService);
+                                               ExhibitPlaceService exhibitPlaceService,
+                                               ImageService imageService) {
+        return new ExhibitController(exhibitService, authorService, dictionaryService, exhibitPlaceService, imageService);
     }
 
     @Bean
@@ -31,8 +35,9 @@ public class WebApiConfiguration {
     public EventController eventController(EventService eventService,
                                            ExhibitService exhibitService,
                                            EventExhibitService eventExhibitService,
-                                           DictionaryService dictionaryService) {
-        return new EventController(eventService, exhibitService, eventExhibitService, dictionaryService);
+                                           DictionaryService dictionaryService,
+                                           ImageService imageService) {
+        return new EventController(eventService, exhibitService, eventExhibitService, dictionaryService, imageService);
     }
 
     @Bean

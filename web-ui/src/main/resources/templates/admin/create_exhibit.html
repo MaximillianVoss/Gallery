@@ -10,15 +10,15 @@
 <main>
     <h1>Создание экспоната</h1>
     <h2>Атрибуты:</h2>
-    <form>
+    <form th:action="@{/api/v1/exhibits/create}" action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input type="text" class="form-control" id="name-input" required>
+            <input name="name" type="text" class="form-control" id="name-input" required>
         </div>
 
         <div class="form-group">
             <label for="author-input" class="form-label">Автор</label>
-            <select class="form-select" id="author-input" required>
+            <select name="authorId" class="form-select" id="author-input" required>
                 <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}">
                     United States
                 </option>
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="type-input" class="form-label">Категория</label>
-            <select class="form-select" id="type-input" required>
+            <select name="typeId" class="form-select" id="type-input" required>
                 <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}">
                     United States
                 </option>
@@ -36,8 +36,9 @@
 
         <div class="form-group">
             <label for="storage-condition-input" class="form-label">Условия хранения</label>
-            <select class="form-select" id="storage-condition-input" required>
-                <option th:each="storageCondition : ${storageConditions}" th:value="${storageCondition.id}" th:text="${storageCondition.name}">
+            <select name="storageConditionId" class="form-select" id="storage-condition-input" required>
+                <option th:each="storageCondition : ${storageConditions}" th:value="${storageCondition.id}"
+                        th:text="${storageCondition.name}">
                     United States
                 </option>
             </select>
@@ -45,22 +46,22 @@
 
         <div class="form-group">
             <label for="year-input">Год</label>
-            <input type="number" class="form-control" id="year-input" required>
+            <input name="year" type="number" class="form-control" id="year-input" required>
         </div>
 
         <div class="form-group">
             <label for="length-input">Длина</label>
-            <input type="number" class="form-control" id="length-input" required>
+            <input name="length" type="number" class="form-control" id="length-input" required>
         </div>
 
         <div class="form-group">
             <label for="width-input">Ширина</label>
-            <input type="number" class="form-control" id="width-input" required>
+            <input name="width" type="number" class="form-control" id="width-input" required>
         </div>
 
         <div class="form-group">
             <label for="style-input" class="form-label">Стиль</label>
-            <select class="form-select" id="style-input" required>
+            <select name="styleId" class="form-select" id="style-input" required>
                 <option th:each="style : ${styles}" th:value="${style.id}" th:text="${style.name}">
                     United States
                 </option>
@@ -69,16 +70,22 @@
 
         <div class="form-group">
             <label for="genre-input" class="form-label">Жанр</label>
-            <select class="form-select" id="genre-input" required>
+            <select name="genreId" class="form-select" id="genre-input" required>
                 <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}">
                     United States
                 </option>
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="image-input">Изображение</label>
+            <input name="imageFile" type="file" class="form-control" id="image-input" accept=".jpg, .jpeg, .png"
+                   required>
+        </div>
+
         <hr class="my-4">
 
-        <button onclick="createExhibitObj()" class="btn btn-primary btn-lg " type="submit">Сохранить</button>
+        <button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
 
     </form>
 

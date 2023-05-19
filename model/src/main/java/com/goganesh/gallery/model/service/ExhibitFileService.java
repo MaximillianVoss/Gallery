@@ -21,16 +21,17 @@ public class ExhibitFileService {
     private final ExhibitFileRepository exhibitFileRepository;
     private final FileStorageService fileStorageService;
     private final String baseDirectory;
+    private final String exhibitFileSubDirectory;
 
 
     public void save(Exhibit exhibit, Dictionary docType, String originalFileName, InputStream inputStream) throws IOException {
-        Path directory = Paths.get(baseDirectory, exhibit.getId().toString(), docType.getCode());
+        Path directory = Paths.get(baseDirectory, exhibitFileSubDirectory, exhibit.getId().toString(), docType.getCode());
         String path = fileStorageService.saveFile(inputStream, directory, originalFileName);
 
         ExhibitFile exhibitFile = new ExhibitFile();
         exhibitFile.setExhibit(exhibit);
         exhibitFile.setType(docType);
-        exhibitFile.setPath(path);
+        exhibitFile.setPath(path.replace(baseDirectory, ""));
 
         exhibitFileRepository.save(exhibitFile);
     }

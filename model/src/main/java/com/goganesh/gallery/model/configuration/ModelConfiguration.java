@@ -93,12 +93,21 @@ public class ModelConfiguration {
     @Bean
     public ExhibitFileService exhibitFileService(ExhibitFileRepository exhibitFileRepository,
                                                  FileStorageService fileStorageService,
-                                                 @Value("${com.goganesh.gallery.model.file-storage-service.exhibit.document.directory}") String baseDirectory) {
-        return new ExhibitFileService(exhibitFileRepository, fileStorageService, baseDirectory);
+                                                 @Value("${com.goganesh.gallery.model.file-storage-service.base-directory}") String baseDirectory,
+                                                 @Value("${com.goganesh.gallery.model.file-storage-service.exhibit.document.sub-directory}") String exhibitFileSubDirectory) {
+        return new ExhibitFileService(exhibitFileRepository, fileStorageService, baseDirectory, exhibitFileSubDirectory);
     }
 
     @Bean
     public RecommendService recommendService(EventRepository eventRepository) {
         return new RecommendService(eventRepository);
+    }
+
+    @Bean
+    public ImageService imageService(FileStorageService fileStorageService,
+                                     @Value("${com.goganesh.gallery.model.file-storage-service.base-directory}") String baseDirectory,
+                                     @Value("${com.goganesh.gallery.model.file-storage-service.event.image.sub-directory}") String eventImageSubDirectory,
+                                     @Value("${com.goganesh.gallery.model.file-storage-service.exhibit.image.sub-directory}") String exhibitImageSubDirectory) {
+        return new ImageService(fileStorageService, baseDirectory, eventImageSubDirectory, exhibitImageSubDirectory);
     }
 }

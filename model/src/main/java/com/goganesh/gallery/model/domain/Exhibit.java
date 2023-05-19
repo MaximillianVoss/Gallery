@@ -42,4 +42,6 @@ public class Exhibit extends BaseEntity {
     private Integer length;
     private Integer width;
 
+    private String image;
+
 }

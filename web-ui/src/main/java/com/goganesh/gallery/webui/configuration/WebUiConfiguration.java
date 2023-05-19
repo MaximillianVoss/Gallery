@@ -7,13 +7,32 @@ import com.goganesh.gallery.webui.controller.admin.EventAdminPageController;
 import com.goganesh.gallery.webui.controller.admin.ExhibitAdminPageController;
 import com.goganesh.gallery.webui.controller.admin.AdminPageController;
 import com.goganesh.gallery.webui.controller.client.*;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 @Configuration
 @Import(ModelConfiguration.class)
-public class WebUiConfiguration {
+@NoArgsConstructor
+public class WebUiConfiguration implements WebMvcConfigurer {
+
+    @Value("${com.goganesh.gallery.model.file-storage-service.base-directory}")
+    private String baseDirectory;
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/img/*")
+                .addResourceLocations("file:" + baseDirectory + "/")
+                .setCachePeriod(0)
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver());
+    }
 
     @Bean
     public AdminPageController adminPageController() {

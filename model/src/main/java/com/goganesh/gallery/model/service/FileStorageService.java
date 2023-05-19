@@ -21,8 +21,8 @@ public class FileStorageService {
 
         Path path = Paths.get(directory.toString(), originalFileName);
         Files.createFile(path);
-        File targetFile = new File(path.toString());
 
+        File targetFile = new File(path.toString());
         try (OutputStream outStream = new FileOutputStream(targetFile)) {
             outStream.write(buffer);
         }

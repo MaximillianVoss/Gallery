@@ -16,14 +16,15 @@ import java.time.LocalDate;
 @Entity
 public class Event extends BaseEntity {
 
-    public String name;
-    public String description;
+    private String name;
+    private String description;
     @Column(name = "start_date")
-    public LocalDate start;
+    private LocalDate start;
     @Column(name = "end_date")
-    public LocalDate end;
+    private LocalDate end;
     @ManyToOne
     @JoinColumn(name = "type_id")
-    public Dictionary type;
+    private Dictionary type;
 
+    private String image;
 }

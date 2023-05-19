@@ -51,6 +51,7 @@
             <column name="genre_id" type="UUID" remarks="тип жанра">
                 <constraints nullable="false"/>
             </column>
+            <column name="image" type="varchar" remarks="обложка карточки"/>
         </createTable>
 
         <createTable tableName="author" remarks="авторы работ">
@@ -99,6 +100,7 @@
             <column name="type_id" type="UUID" remarks="тип мероприятия">
                 <constraints nullable="false"/>
             </column>
+            <column name="image" type="varchar" remarks="обложка карточки"/>
         </createTable>
 
         <createTable tableName="event_exhibit" remarks="экспонаты мероприятия">
