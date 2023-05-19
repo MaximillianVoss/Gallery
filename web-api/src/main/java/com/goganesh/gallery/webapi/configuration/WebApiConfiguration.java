@@ -6,7 +6,6 @@ import com.goganesh.gallery.webapi.controller.AuthorController;
 import com.goganesh.gallery.webapi.controller.EventController;
 import com.goganesh.gallery.webapi.controller.ExhibitController;
 import com.goganesh.gallery.webapi.controller.FileController;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

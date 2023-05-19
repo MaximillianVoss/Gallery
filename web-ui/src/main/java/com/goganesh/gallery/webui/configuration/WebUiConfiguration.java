@@ -29,7 +29,7 @@ public class WebUiConfiguration implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/img/*")
                 .addResourceLocations("file:" + baseDirectory + "/")
-                .setCachePeriod(0)
+                .setCachePeriod(3600)
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver());
     }
