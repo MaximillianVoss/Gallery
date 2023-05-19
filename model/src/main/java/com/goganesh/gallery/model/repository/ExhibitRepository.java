@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public interface ExhibitRepository extends JpaRepository<Exhibit, UUID> {
 
-    Page<Exhibit> findAllByNameContaining(String name, Pageable pageable);
+    Page<Exhibit> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 
     @Query("select ee.exhibit from EventExhibit ee where ee.event = :ev")
     List<Exhibit> findAllByEvent(@Param("ev") Event event);

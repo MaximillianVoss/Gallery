@@ -47,6 +47,14 @@ public class AuthorDataTablesService extends DataServiceBase<AuthorDataTablesDto
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return authorService.findAll(pageable).getTotalElements();
+        String search = paginationCriteria.getSearch().getValue();
+        List<AuthorDataTablesDto> result;
+        if (Objects.nonNull(search)) {
+            result = authorService.findAllByNameContain(search, pageable).map(authorDataTablesMapper::toDto).getContent();
+        } else {
+            result = authorService.findAll(pageable).map(authorDataTablesMapper::toDto).getContent();
+        }
+
+        return result.size();
     }
 }

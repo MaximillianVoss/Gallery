@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 public class ExhibitDataTablesService extends DataServiceBase<ExhibitDataTablesDto> {
@@ -22,11 +23,11 @@ public class ExhibitDataTablesService extends DataServiceBase<ExhibitDataTablesD
         int size = paginationCriteria.getLength();
 
         Pageable pageable = PageRequest.of(page, size);
-        String name = paginationCriteria.getColumns().get(1).getSearch().getValue();
 
+        String search = paginationCriteria.getSearch().getValue();
         List<ExhibitDataTablesDto> result;
-        if (name != null) {
-            result = exhibitService.findAllByNameContaining(name, pageable).map(exhibitMapper::toDto).getContent();
+        if (Objects.nonNull(search)) {
+            result = exhibitService.findAllByNameContain(search, pageable).map(exhibitMapper::toDto).getContent();
         } else {
             result = exhibitService.findAll(pageable).map(exhibitMapper::toDto).getContent();
         }
@@ -45,15 +46,15 @@ public class ExhibitDataTablesService extends DataServiceBase<ExhibitDataTablesD
         int size = paginationCriteria.getLength();
 
         Pageable pageable = PageRequest.of(page, size);
-        String name = paginationCriteria.getColumns().get(1).getSearch().getValue();
 
-        long result;
-        if (name != null) {
-            result = exhibitService.findAllByNameContaining(name, pageable).getTotalElements();
+        String search = paginationCriteria.getSearch().getValue();
+        List<ExhibitDataTablesDto> result;
+        if (Objects.nonNull(search)) {
+            result = exhibitService.findAllByNameContain(search, pageable).map(exhibitMapper::toDto).getContent();
         } else {
-            result = exhibitService.findAll(pageable).getTotalElements();
+            result = exhibitService.findAll(pageable).map(exhibitMapper::toDto).getContent();
         }
 
-        return result;
+        return result.size();
     }
 }

@@ -47,6 +47,14 @@ public class EventDataTablesService extends DataServiceBase<EventDataTablesDto> 
 
         Pageable pageable = PageRequest.of(page, size);
 
-        return eventService.findAll(pageable).getTotalElements();
+        String search = paginationCriteria.getSearch().getValue();
+        List<EventDataTablesDto> result;
+        if (Objects.nonNull(search)) {
+            result = eventService.findAllByNameContain(search, pageable).map(eventMapper::toDto).getContent();
+        } else {
+            result = eventService.findAll(pageable).map(eventMapper::toDto).getContent();
+        }
+
+        return result.size();
     }
 }

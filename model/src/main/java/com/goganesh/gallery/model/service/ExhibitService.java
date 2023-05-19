@@ -25,8 +25,8 @@ public class ExhibitService {
         return exhibitRepository.findAll(pageable);
     }
 
-    public Page<Exhibit> findAllByNameContaining(String name, Pageable pageable) {
-        return exhibitRepository.findAllByNameContaining(name, pageable);
+    public Page<Exhibit> findAllByNameContain(String name, Pageable pageable) {
+        return exhibitRepository.findAllByNameContainingIgnoreCase(name, pageable);
     }
 
     public long count() {
