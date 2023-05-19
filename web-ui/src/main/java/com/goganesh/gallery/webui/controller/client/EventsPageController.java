@@ -9,11 +9,13 @@ import com.goganesh.gallery.model.service.DictionaryService;
 import com.goganesh.gallery.model.service.EventService;
 import com.goganesh.gallery.model.service.ExhibitService;
 import com.goganesh.gallery.model.service.RecommendService;
+import com.goganesh.gallery.webui.dto.RecommendRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -27,6 +29,7 @@ import static com.goganesh.gallery.model.service.DictionaryService.*;
 @Controller
 @RequestMapping("/events")
 @AllArgsConstructor
+@Validated
 public class EventsPageController {
 
     private final EventService eventService;
@@ -57,9 +60,9 @@ public class EventsPageController {
     }
 
     @PostMapping(value = "/recommendForm", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public RedirectView handleEventsRecommend(@RequestParam Map<String,String> allParams,
+    public RedirectView handleEventsRecommend(RecommendRequestDto requestDto,
                                               RedirectAttributes attributes) {
-        List<Event> events = recommendService.findRecommendEventsByRequest(toModel(allParams));
+        List<Event> events = recommendService.findRecommendEventsByRequest(toModel(requestDto));
         attributes.addAttribute("ids", events);
         return new RedirectView("/events/recommend");
     }
@@ -90,17 +93,17 @@ public class EventsPageController {
         return "client/event";
     }
 
-    private RecommendRequest toModel(Map<String, String> dto) {
+    private RecommendRequest toModel(RecommendRequestDto dto) {
         return RecommendRequest.builder()
-                .age(Long.valueOf(dto.get("age")))
-                .education(dictionaryService.findById(UUID.fromString(dto.get("eduId")))
-                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.get("eduId"))))
-                .genre(dictionaryService.findById(UUID.fromString(dto.get("genreId")))
-                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.get("eduId"))))
-                .sex(dictionaryService.findById(UUID.fromString(dto.get("sexId")))
-                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.get("eduId"))))
-                .style(dictionaryService.findById(UUID.fromString(dto.get("styleId")))
-                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.get("eduId"))))
+                .age(dto.getAge())
+                .education(dictionaryService.findById(dto.getEduId())
+                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.getEduId().toString())))
+                .genre(dictionaryService.findById(dto.getGenreId())
+                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.getGenreId().toString())))
+                .sex(dictionaryService.findById(dto.getSexId())
+                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.getSexId().toString())))
+                .style(dictionaryService.findById(dto.getStyleId())
+                        .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", dto.getStyleId().toString())))
                 .build();
     }
 }

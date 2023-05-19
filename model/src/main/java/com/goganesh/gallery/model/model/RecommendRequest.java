@@ -10,7 +10,7 @@ public class RecommendRequest {
 
     private Dictionary sex;
     private Dictionary education;
-    private Long age;
+    private Integer age;
     private Dictionary style;
     private Dictionary genre;
 }

@@ -15,8 +15,9 @@ public class RecommendService {
     private final EventRepository eventRepository;
 
     public List<Event> findRecommendEventsByRequest(RecommendRequest recommendRequest) {
-        return eventRepository.findRecommendEventsByRequest(recommendRequest)
-                .stream()
+        List<EventRecommendRate> rates = eventRepository.findRecommendEventsByRequest(recommendRequest);
+
+        return rates.stream()
                 .map(EventRecommendRate::getEvent)
                 .collect(Collectors.toList());
     }
