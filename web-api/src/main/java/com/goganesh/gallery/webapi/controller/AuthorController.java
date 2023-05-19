@@ -6,33 +6,41 @@ import com.goganesh.gallery.model.service.AuthorService;
 import com.goganesh.gallery.webapi.dto.PutAuthorRequest;
 import com.goganesh.gallery.webapi.dto.PostAuthorRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("/api/v1/authors")
 @PreAuthorize("hasAnyRole('TYPE_ADMIN')")
 @AllArgsConstructor
+@Validated
 public class AuthorController {
 
     private final AuthorService authorService;
 
-    @PutMapping
-    public Author putAuthor(@Valid @RequestBody PutAuthorRequest putAuthorRequest) {
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String putAuthor(PutAuthorRequest putAuthorRequest) {
         Author author = authorService.findById(putAuthorRequest.getId())
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", putAuthorRequest.getId().toString()));
         author.setName(putAuthorRequest.getName());
 
-        return authorService.save(author);
+        authorService.save(author);
+
+        return "redirect:/admin/authors";
     }
 
-    @PostMapping
-    public Author postExhibit(@Valid @RequestBody PostAuthorRequest postAuthorRequest) {
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String postExhibit(PostAuthorRequest postAuthorRequest) {
         Author author = new Author();
         author.setName(postAuthorRequest.getName());
 
-        return authorService.save(author);
+        authorService.save(author);
+
+        return "redirect:/admin/authors";
     }
 }

@@ -10,21 +10,20 @@
 <main>
     <h1>Создание автора</h1>
     <h2>Атрибуты:</h2>
-    <form>
+    <form th:action="@{/api/v1/authors/create}" action="#" method="post">
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input type="text" class="form-control" id="name-input" required>
+            <input name="name" type="text" class="form-control" id="name-input" required>
         </div>
 
         <hr class="my-4">
 
-        <button onclick="createAuthorObj()" class="btn btn-primary btn-lg" type="submit">Сохранить</button>
+        <button class="btn btn-primary btn-lg" type="submit">Сохранить</button>
 
     </form>
 
 
 </main>
 <footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
-<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
 </body>
 </html>

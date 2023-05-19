@@ -1,38 +1,3 @@
-function createAuthorObj() {
-    let obj = new Object();
-    obj.name = $("#name-input").val();
-
-    let json = JSON.stringify(obj);
-    $.ajax({
-        url: "http://localhost:8080/api/v1/authors",
-        type: "POST",
-        data: json,
-        contentType: 'application/json',
-
-        success: function (data, status, xhr) {
-            window.location.replace("/admin/authors");
-        }
-    })
-}
-
-function updateAuthorObj() {
-    let obj = new Object();
-    obj.id = $("#id-input").attr("value");
-    obj.name = $("#name-input").val();
-
-    let json = JSON.stringify(obj);
-    $.ajax({
-        url: "http://localhost:8080/api/v1/authors",
-        type: "PUT",
-        data: json,
-        contentType: 'application/json',
-
-        success: function (data, status, xhr) {
-            window.location.replace("/admin/authors");
-        }
-    })
-}
-
 function deleteEventExhibitObj() {
     let url = window.location.pathname;
     let pathArray = url.split("/");

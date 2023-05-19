@@ -10,27 +10,26 @@
 <main>
     <h1 th:text="'Редактирование автора ' + ${author.name}">Автор</h1>
     <h2>Атрибуты:</h2>
-    <form>
+    <form th:action="@{/api/v1/authors/update}" action="#" method="post">
         <div class="form-group">
             <label for="id-input">Идентификатор</label>
-            <input type="text" class="form-control" id="id-input" readonly="readonly"
+            <input name="id" type="text" class="form-control" id="id-input" readonly="readonly"
                    th:value="${author.id}">
         </div>
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input type="text" class="form-control" id="name-input" required
+            <input name="name" type="text" class="form-control" id="name-input" required
                    th:value="${author.name}">
         </div>
 
         <hr class="my-4">
 
-        <button onclick="updateAuthorObj()" class="btn btn-primary btn-lg " type="submit">Сохранить</button>
+        <button class="btn btn-primary btn-lg" type="submit">Сохранить</button>
 
     </form>
 
 
 </main>
 <footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
-<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
 </body>
 </html>

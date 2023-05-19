@@ -1,0 +1,25 @@
+package com.goganesh.gallery.webapi.dto;
+
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
+
+@Data
+public class PostEventRequest {
+
+    @NotBlank
+    private String name;
+
+    private String description;
+
+    @NotNull
+    private String start;
+
+    @NotNull
+    private String end;
+
+    @NotNull
+    private UUID typeId;
+}
