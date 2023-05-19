@@ -86,7 +86,7 @@
                     <wait>500</wait>
                     <maxAttempts>240</maxAttempts>
                     <layout>JAR</layout>
-                    <mainClass>com.goganesh.bookshop.app.BookShopApp</mainClass>
+                    <mainClass>com.goganesh.gallery.application.GalleryApplication</mainClass>
                 </configuration>
 
                 <executions>
