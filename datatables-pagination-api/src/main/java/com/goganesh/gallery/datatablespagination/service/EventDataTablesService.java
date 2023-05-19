@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 public class EventDataTablesService extends DataServiceBase<EventDataTablesDto> {
@@ -22,7 +23,16 @@ public class EventDataTablesService extends DataServiceBase<EventDataTablesDto> 
         int size = paginationCriteria.getLength();
 
         Pageable pageable = PageRequest.of(page, size);
-        return eventService.findAll(pageable).map(eventMapper::toDto).getContent();
+
+        String search = paginationCriteria.getSearch().getValue();
+        List<EventDataTablesDto> result;
+        if (Objects.nonNull(search)) {
+            result = eventService.findAllByNameContain(search, pageable).map(eventMapper::toDto).getContent();
+        } else {
+            result = eventService.findAll(pageable).map(eventMapper::toDto).getContent();
+        }
+
+        return result;
     }
 
     @Override

@@ -44,4 +44,8 @@ public class EventService {
     public List<Event> findAllByIds(List<UUID> ids) {
         return eventRepository.findAllByIdIn(ids);
     }
+
+    public Page<Event> findAllByNameContain(String search, Pageable pageable) {
+        return eventRepository.findAllByNameContainingIgnoreCase(search, pageable);
+    }
 }
