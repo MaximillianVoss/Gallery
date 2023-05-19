@@ -101,14 +101,22 @@
             var ids = $.map(table.row('.selected').data(), function (item) {
                 return item
             });
-            window.location.href = (window.location.pathname + "/" + ids[3]);
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                window.location.href = (window.location.pathname + "/" + ids[3]);
+            }
         });
 
         $('#event-exhibits').click(function () {
             var ids = $.map(table.row('.selected').data(), function (item) {
                 return item
             });
-            window.location.href = (window.location.pathname + "/" + ids[3] + "/exhibits");
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                window.location.href = (window.location.pathname + "/" + ids[3] + "/exhibits");
+            }
         });
 
         $('#create-event').click(function () {

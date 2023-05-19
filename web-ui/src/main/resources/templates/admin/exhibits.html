@@ -105,14 +105,22 @@
             var ids = $.map(table.row('.selected').data(), function (item) {
                 return item
             });
-            window.location.href = (window.location.pathname + "/" + ids[3] + "/places");
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                window.location.href = (window.location.pathname + "/" + ids[3] + "/places");
+            }
         });
 
         $('#update-exhibit').click(function () {
             var ids = $.map(table.row('.selected').data(), function (item) {
                 return item
             });
-            window.location.href = (window.location.pathname + "/" + ids[3]);
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                window.location.href = (window.location.pathname + "/" + ids[3]);
+            }
         });
 
         $('#create-exhibit').click(function () {
@@ -123,7 +131,11 @@
             var ids = $.map(table.row('.selected').data(), function (item) {
                 return item
             });
-            window.location.href = (window.location.pathname + "/" + ids[3] + "/documents");
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                window.location.href = (window.location.pathname + "/" + ids[3] + "/documents");
+            }
         });
     });
 </script>
