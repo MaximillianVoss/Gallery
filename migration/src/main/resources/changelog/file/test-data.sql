@@ -6,7 +6,7 @@ insert into author values ('8d2b4bfa-24ee-49ae-83a7-98eb46432ff3', 'Алексе
 insert into author values ('c690955c-04c8-497a-aa92-e34e82148b85', 'Евфросина');
 insert into author values ('be2a36f0-2bbc-4b7d-bb0f-e8e583d54f39', 'Миша Никатин');
 
-insert into event values ('d82bc250-07aa-47da-9ba0-93b83b59cf9e', 'Персональная выставка Алины Глазун', 'Персональная выставка современной москвоской хужожницы Алина Глазун', '2023-03-01', '2023-03-15', 'fffaf5fe-4885-4cce-8361-98602c5ac965', '/img/events/d82bc250-07aa-47da-9ba0-93b83b59cf9e/klaudia-piaskowska-g55bG1O5Lf0-unsplash-min.jpg');
+insert into event values ('d82bc250-07aa-47da-9ba0-93b83b59cf9e', 'Персональная выставка Алины Глазун', 'Персональная выставка современной москвоской хужожницы Алина Глазун', '2023-03-01', '2023-03-15', 'fffaf5fe-4885-4cce-8361-98602c5ac965', '/img/events/d82bc250-07aa-47da-9ba0-93b83b59cf9e/zgc1993-Fk9RSVdJ6Q8-unsplash-min.jpg');
 insert into event values ('296edec8-8d29-417a-b6e8-4bc6d902642d', 'Персональная выставка Евгения Гранильщикова', 'Персональная выставка современного москвоского хужожника Евгения Гранильщикова', '2023-03-01', '2023-03-15', 'fffaf5fe-4885-4cce-8361-98602c5ac965', '/img/events/296edec8-8d29-417a-b6e8-4bc6d902642d/raychan-kJQ6cDyodAM-unsplash-min.jpg');
 insert into event values ('eb628b29-0f9e-4a41-8eea-88f14aae3e70', 'Персональная выставка Алексея Дубинского', 'Персональная выставка современного москвоского хужожника Алексея Дубинского', '2023-03-01', '2023-03-15', 'fffaf5fe-4885-4cce-8361-98602c5ac965', '/img/events/eb628b29-0f9e-4a41-8eea-88f14aae3e70/dannie-jing-3GZlhROZIQg-unsplash-min.jpg');
 
