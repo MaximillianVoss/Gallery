@@ -11,8 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/exhibits")
@@ -22,18 +27,30 @@ public class ExhibitsPageController {
     private final ExhibitService exhibitService;
 
     @GetMapping
-    public String exhibitsPage(Model model) {
-        PageRequest pageRequest = PageRequest.of(0, 20);
-        Page<Exhibit> exhibits = exhibitService.findAll(pageRequest);
+    public String exhibitsPage(Model model,
+                               @RequestParam("page") Optional<Integer> page,
+                               @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(9);
 
-        model.addAttribute("exhibits", exhibits.getContent());
+        Page<Exhibit> exhibits = exhibitService.findAll(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("exhibits", exhibits);
+
+        int totalPages = exhibits.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
 
         return "client/exhibits";
     }
 
     @GetMapping("/{id}")
     public String exhibitPage(@PathVariable UUID id,
-                               Model model) {
+                              Model model) {
         Exhibit exhibit = exhibitService.findById(id)
                 .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", id.toString()));
 

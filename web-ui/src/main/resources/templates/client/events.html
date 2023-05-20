@@ -23,6 +23,8 @@
         </div>
     </div>
 
+    <td th:replace="~{fragments/client/pagination_fragment :: pagination(items = ${events}, source ='events')}"/>
+
 </main>
 <footer th:replace="~{fragments/client/footer_fragment :: footer}"></footer>
 

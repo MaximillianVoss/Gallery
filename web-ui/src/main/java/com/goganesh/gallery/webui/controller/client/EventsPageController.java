@@ -11,6 +11,7 @@ import com.goganesh.gallery.model.service.ExhibitService;
 import com.goganesh.gallery.model.service.RecommendService;
 import com.goganesh.gallery.webui.dto.RecommendRequestDto;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static com.goganesh.gallery.model.service.DictionaryService.*;
 
@@ -38,13 +42,25 @@ public class EventsPageController {
     private final RecommendService recommendService;
 
     @GetMapping
-    public String eventsPage(Model model) {
-        PageRequest pageRequest = PageRequest.of(0, 20);
-        List<Event> events = eventService.findAll(pageRequest).getContent();
+    public String eventsPage(Model model,
+                             @RequestParam("page") Optional<Integer> page,
+                             @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(9);
+
+        Page<Event> events = eventService.findAll(PageRequest.of(currentPage - 1, pageSize));
         Map<Event, Long> eventCount = eventService.findAllEventCount();
 
         model.addAttribute("events", events);
         model.addAttribute("eventCount", eventCount);
+
+        int totalPages = events.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
 
         return "client/events";
     }
