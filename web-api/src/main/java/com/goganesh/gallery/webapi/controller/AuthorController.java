@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @Controller
 @RequestMapping("/api/v1/authors")
 @PreAuthorize("hasAnyRole('TYPE_ADMIN')")

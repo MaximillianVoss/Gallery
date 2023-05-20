@@ -20,7 +20,7 @@ public interface TableDataService {
      * @return the total count of the entries.
      * @throws TableDataException
      */
-    long countTotalEntries() throws TableDataException;
+    long countTotalEntries(PaginationCriteria paginationCriteria) throws TableDataException;
 
     /**
      * Used to get the number of total filtered result according to provided search

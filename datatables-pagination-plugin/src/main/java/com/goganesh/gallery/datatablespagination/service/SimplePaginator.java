@@ -35,7 +35,7 @@ public class SimplePaginator implements TablePaginator {
         page.setDraw(draw);
         log.log(Level.FINE, "Draw set " + draw);
 
-        long recordsTotal = dataService.countTotalEntries();
+        long recordsTotal = dataService.countTotalEntries(paginationCriteria);
         page.setRecordsTotal(recordsTotal);
         log.log(Level.FINE, "RecordsTotal set " + recordsTotal);
 

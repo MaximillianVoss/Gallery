@@ -32,4 +32,7 @@ public class ExhibitPlaceService {
         return exhibitPlaceRepository.save(exhibitPlace);
     }
 
+    public long countAllByExhibit(Exhibit exhibit) {
+        return exhibitPlaceRepository.countAllByExhibit(exhibit);
+    }
 }

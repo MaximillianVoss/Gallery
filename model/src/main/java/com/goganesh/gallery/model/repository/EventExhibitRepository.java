@@ -14,5 +14,7 @@ public interface EventExhibitRepository extends JpaRepository<EventExhibit, UUID
 
     Page<EventExhibit> findAllByEvent(Event event, Pageable pageable);
 
+    long countAllByEvent(Event event);
+
     Optional<EventExhibit> findByEventAndExhibit(Event event, Exhibit exhibit);
 }

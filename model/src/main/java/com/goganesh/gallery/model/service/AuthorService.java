@@ -39,4 +39,8 @@ public class AuthorService {
     public Page<Author> findAllByNameContain(String name, Pageable pageable) {
         return authorRepository.findAllByNameContainingIgnoreCase(name, pageable);
     }
+
+    public long countAllByNameContain(String search) {
+        return authorRepository.countAllByNameContainingIgnoreCase(search);
+    }
 }

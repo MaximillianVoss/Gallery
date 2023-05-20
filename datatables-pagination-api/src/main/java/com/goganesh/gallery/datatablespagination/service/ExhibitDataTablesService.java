@@ -36,25 +36,18 @@ public class ExhibitDataTablesService extends DataServiceBase<ExhibitDataTablesD
     }
 
     @Override
-    public long countTotalEntries() {
+    public long countTotalEntries(PaginationCriteria paginationCriteria) {
         return exhibitService.count();
     }
 
     @Override
     public long countFilteredEntries(PaginationCriteria paginationCriteria) {
-        int page = paginationCriteria.getStart() / paginationCriteria.getLength();
-        int size = paginationCriteria.getLength();
-
-        Pageable pageable = PageRequest.of(page, size);
-
         String search = paginationCriteria.getSearch().getValue();
-        List<ExhibitDataTablesDto> result;
+
         if (Objects.nonNull(search)) {
-            result = exhibitService.findAllByNameContain(search, pageable).map(exhibitMapper::toDto).getContent();
-        } else {
-            result = exhibitService.findAll(pageable).map(exhibitMapper::toDto).getContent();
+            return exhibitService.countAllByNameContain(search);
         }
 
-        return result.size();
+        return exhibitService.count();
     }
 }

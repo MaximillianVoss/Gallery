@@ -43,21 +43,22 @@ public class EventExhibitsDataTablesService extends DataServiceBase<ExhibitDataT
     }
 
     @Override
-    public long countTotalEntries() {
-        //todo think about it
-        return 0;
-    }
-
-    @Override
-    public long countFilteredEntries(PaginationCriteria paginationCriteria) {
-        int page = paginationCriteria.getStart();
-        int size = paginationCriteria.getLength();
-
-        Pageable pageable = PageRequest.of(page, size);
+    public long countTotalEntries(PaginationCriteria paginationCriteria) {
         ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
         UUID eventId = criteria.getFilter().get(EVENT_FILTER_NANE);
         Event event = eventService.findById(eventId)
                 .orElseThrow(() -> new NotFoundException(Event.class.getSimpleName(), "id", eventId.toString()));
-        return eventExhibitService.findAllByEvent(event, pageable).getTotalElements();
+
+        return eventExhibitService.countAllByEvent(event);
+    }
+
+    @Override
+    public long countFilteredEntries(PaginationCriteria paginationCriteria) {
+        ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
+        UUID eventId = criteria.getFilter().get(EVENT_FILTER_NANE);
+        Event event = eventService.findById(eventId)
+                .orElseThrow(() -> new NotFoundException(Event.class.getSimpleName(), "id", eventId.toString()));
+
+        return eventExhibitService.countAllByEvent(event);
     }
 }

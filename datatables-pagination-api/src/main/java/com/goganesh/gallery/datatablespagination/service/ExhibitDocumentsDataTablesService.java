@@ -41,24 +41,20 @@ public class ExhibitDocumentsDataTablesService extends DataServiceBase<ExhibitDo
     }
 
     @Override
-    public long countTotalEntries() {
-        //todo think about it
-        return 0;
-    }
-
-    @Override
-    public long countFilteredEntries(PaginationCriteria paginationCriteria) {
-        int page = paginationCriteria.getStart();
-        int size = paginationCriteria.getLength();
-
-        Pageable pageable = PageRequest.of(page, size);
-
+    public long countTotalEntries(PaginationCriteria paginationCriteria) {
         ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
         UUID exhibitId = criteria.getFilter().get(EXHIBIT_FILTER_NANE);
         Exhibit exhibit = exhibitService.findById(exhibitId)
                 .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", exhibitId.toString()));
-        return exhibitFileService.findAllByExhibit(exhibit, pageable)
-                .map(exhibitDocumentMapper::toDto)
-                .getTotalElements();
+        return exhibitFileService.countAllByExhibit(exhibit);
+    }
+
+    @Override
+    public long countFilteredEntries(PaginationCriteria paginationCriteria) {
+        ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
+        UUID exhibitId = criteria.getFilter().get(EXHIBIT_FILTER_NANE);
+        Exhibit exhibit = exhibitService.findById(exhibitId)
+                .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", exhibitId.toString()));
+        return exhibitFileService.countAllByExhibit(exhibit);
     }
 }

@@ -24,4 +24,6 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     List<Event> findAllByIdIn(List<UUID> ids);
 
     Page<Event> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    long countAllByNameContainingIgnoreCase(String name);
 }

@@ -34,32 +34,31 @@ public class PlaceExhibitsDataTablesService extends DataServiceBase<PlaceExhibit
 
         ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
         UUID exhibitId = criteria.getFilter().get(EXHIBIT_FILTER_NANE);
+
         Exhibit exhibit = exhibitService.findById(exhibitId)
                 .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", exhibitId.toString()));
+
         return exhibitPlaceService.findAllByExhibit(exhibit, pageable)
                 .map(placeExhibitMapper::toDto)
                 .getContent();
     }
 
     @Override
-    public long countTotalEntries() {
-        //todo think about it
-        return 0;
+    public long countTotalEntries(PaginationCriteria paginationCriteria) {
+        ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
+        UUID exhibitId = criteria.getFilter().get(EXHIBIT_FILTER_NANE);
+
+        Exhibit exhibit = exhibitService.findById(exhibitId)
+                .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", exhibitId.toString()));
+        return exhibitPlaceService.countAllByExhibit(exhibit);
     }
 
     @Override
     public long countFilteredEntries(PaginationCriteria paginationCriteria) {
-        int page = paginationCriteria.getStart();
-        int size = paginationCriteria.getLength();
-
-        Pageable pageable = PageRequest.of(page, size);
-
         ExtendedPaginationCriteria criteria = (ExtendedPaginationCriteria) paginationCriteria;
         UUID exhibitId = criteria.getFilter().get(EXHIBIT_FILTER_NANE);
         Exhibit exhibit = exhibitService.findById(exhibitId)
                 .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", exhibitId.toString()));
-        return exhibitPlaceService.findAllByExhibit(exhibit, pageable)
-                .map(placeExhibitMapper::toDto)
-                .getTotalElements();
+        return exhibitPlaceService.countAllByExhibit(exhibit);
     }
 }

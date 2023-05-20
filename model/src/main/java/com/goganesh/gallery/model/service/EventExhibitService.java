@@ -36,4 +36,8 @@ public class EventExhibitService {
     public List<EventExhibit> findAll() {
         return eventExhibitRepository.findAll();
     }
+
+    public long countAllByEvent(Event event) {
+        return eventExhibitRepository.countAllByEvent(event);
+    }
 }

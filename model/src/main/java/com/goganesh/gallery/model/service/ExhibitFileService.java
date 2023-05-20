@@ -50,4 +50,8 @@ public class ExhibitFileService {
 
         exhibitFileRepository.delete(exhibitFile);
     }
+
+    public long countAllByExhibit(Exhibit exhibit) {
+        return exhibitFileRepository.countAllByExhibit(exhibit);
+    }
 }

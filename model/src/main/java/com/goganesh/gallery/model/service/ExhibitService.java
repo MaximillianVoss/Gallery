@@ -51,4 +51,8 @@ public class ExhibitService {
     public List<Exhibit> findAllByEvent(Event event) {
         return exhibitRepository.findAllByEvent(event);
     }
+
+    public long countAllByNameContain(String search) {
+        return exhibitRepository.countAllByNameContainingIgnoreCase(search);
+    }
 }

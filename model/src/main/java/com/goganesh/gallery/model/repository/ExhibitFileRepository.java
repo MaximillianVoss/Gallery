@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface ExhibitFileRepository extends JpaRepository<ExhibitFile, UUID> {
 
     Page<ExhibitFile> findAllByExhibit(Exhibit exhibit, Pageable pageable);
+
+    long countAllByExhibit(Exhibit exhibit);
 }

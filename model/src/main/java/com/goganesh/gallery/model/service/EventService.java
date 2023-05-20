@@ -48,4 +48,8 @@ public class EventService {
     public Page<Event> findAllByNameContain(String search, Pageable pageable) {
         return eventRepository.findAllByNameContainingIgnoreCase(search, pageable);
     }
+
+    public long countAllByNameContain(String search) {
+        return eventRepository.countAllByNameContainingIgnoreCase(search);
+    }
 }

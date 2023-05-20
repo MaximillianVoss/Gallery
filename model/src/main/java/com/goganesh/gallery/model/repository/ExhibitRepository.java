@@ -15,6 +15,8 @@ public interface ExhibitRepository extends JpaRepository<Exhibit, UUID> {
 
     Page<Exhibit> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 
+    long countAllByNameContainingIgnoreCase(String name);
+
     @Query("select ee.exhibit from EventExhibit ee where ee.event = :ev")
     List<Exhibit> findAllByEvent(@Param("ev") Event event);
 }

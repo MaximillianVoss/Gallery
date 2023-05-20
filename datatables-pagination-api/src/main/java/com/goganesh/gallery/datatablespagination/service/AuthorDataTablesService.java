@@ -36,25 +36,17 @@ public class AuthorDataTablesService extends DataServiceBase<AuthorDataTablesDto
     }
 
     @Override
-    public long countTotalEntries() {
+    public long countTotalEntries(PaginationCriteria paginationCriteria) {
         return authorService.count();
     }
 
     @Override
     public long countFilteredEntries(PaginationCriteria paginationCriteria) {
-        int page = paginationCriteria.getStart();
-        int size = paginationCriteria.getLength();
-
-        Pageable pageable = PageRequest.of(page, size);
-
         String search = paginationCriteria.getSearch().getValue();
-        List<AuthorDataTablesDto> result;
-        if (Objects.nonNull(search)) {
-            result = authorService.findAllByNameContain(search, pageable).map(authorDataTablesMapper::toDto).getContent();
-        } else {
-            result = authorService.findAll(pageable).map(authorDataTablesMapper::toDto).getContent();
-        }
 
-        return result.size();
+        if (Objects.nonNull(search)) {
+            return authorService.countAllByNameContain(search);
+        }
+        return authorService.count();
     }
 }

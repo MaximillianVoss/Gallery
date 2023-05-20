@@ -10,4 +10,6 @@ import java.util.UUID;
 public interface AuthorRepository extends JpaRepository<Author, UUID> {
 
     Page<Author> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    long countAllByNameContainingIgnoreCase(String name);
 }

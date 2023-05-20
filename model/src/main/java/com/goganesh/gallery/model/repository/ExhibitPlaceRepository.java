@@ -13,5 +13,7 @@ import java.util.UUID;
 public interface ExhibitPlaceRepository extends JpaRepository<ExhibitPlace, UUID> {
     Page<ExhibitPlace> findAllByExhibit(Exhibit exhibit, Pageable pageable);
 
+    long countAllByExhibit(Exhibit exhibit);
+
     Optional<ExhibitPlace> findByExhibitAndEndBetween(Exhibit exhibit, LocalDateTime start, LocalDateTime end);
 }
