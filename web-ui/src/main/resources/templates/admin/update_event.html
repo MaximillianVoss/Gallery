@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input name="name" type="text" class="form-control" id="name-input" required
+            <input onkeydown="return /[а-яa-zё]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required
                    th:value="${event.name}">
         </div>
         <div class="form-group">
