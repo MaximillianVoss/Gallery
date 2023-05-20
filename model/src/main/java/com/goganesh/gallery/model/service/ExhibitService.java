@@ -48,7 +48,6 @@ public class ExhibitService {
         return Long.toString(l, Character.MAX_RADIX);
     }
 
-    @Deprecated
     public List<Exhibit> findAllByEvent(Event event) {
         return exhibitRepository.findAllByEvent(event);
     }
