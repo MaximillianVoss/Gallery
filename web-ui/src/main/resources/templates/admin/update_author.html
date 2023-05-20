@@ -11,7 +11,7 @@
     <h1 th:text="'Редактирование автора ' + ${author.name}">Автор</h1>
     <h2>Атрибуты:</h2>
     <form th:action="@{/api/v1/authors/update}" action="#" method="post">
-        <div class="form-group">
+        <div class="form-group" style="display: none;">
             <label for="id-input">Идентификатор</label>
             <input name="id" type="text" class="form-control" id="id-input" readonly="readonly"
                    th:value="${author.id}">
