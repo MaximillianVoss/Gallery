@@ -42,7 +42,7 @@ public class ExhibitDataTablesService extends DataServiceBase<ExhibitDataTablesD
 
     @Override
     public long countFilteredEntries(PaginationCriteria paginationCriteria) {
-        int page = paginationCriteria.getStart();
+        int page = paginationCriteria.getStart() / paginationCriteria.getLength();
         int size = paginationCriteria.getLength();
 
         Pageable pageable = PageRequest.of(page, size);
