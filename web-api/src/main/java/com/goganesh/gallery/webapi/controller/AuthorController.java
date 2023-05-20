@@ -6,11 +6,15 @@ import com.goganesh.gallery.model.service.AuthorService;
 import com.goganesh.gallery.webapi.dto.PutAuthorRequest;
 import com.goganesh.gallery.webapi.dto.PostAuthorRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/api/v1/authors")
@@ -33,12 +37,21 @@ public class AuthorController {
     }
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String postExhibit(PostAuthorRequest postAuthorRequest) {
+    public String postAuthor(PostAuthorRequest postAuthorRequest) {
         Author author = new Author();
         author.setName(postAuthorRequest.getName());
 
         authorService.save(author);
 
         return "redirect:/admin/authors";
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteAuthor(@PathVariable UUID id) {
+        Author author = authorService.findById(id)
+                .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", id.toString()));
+        authorService.delete(author);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

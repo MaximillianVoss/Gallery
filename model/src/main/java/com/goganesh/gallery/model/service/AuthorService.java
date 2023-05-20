@@ -43,4 +43,8 @@ public class AuthorService {
     public long countAllByNameContain(String search) {
         return authorRepository.countAllByNameContainingIgnoreCase(search);
     }
+
+    public void delete(Author author) {
+        authorRepository.delete(author);
+    }
 }

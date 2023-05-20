@@ -1,3 +1,14 @@
+function deleteAuthor(id) {
+    $.ajax({
+        url: "http://localhost:8080/api/v1/authors/" + id,
+        type: "DELETE",
+
+        success: function (data, status, xhr) {
+            window.location.replace("/admin/authors/");
+        }
+    })
+}
+
 function deleteEventExhibitObj() {
     let url = window.location.pathname;
     let pathArray = url.split("/");

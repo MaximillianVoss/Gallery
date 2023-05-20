@@ -3,15 +3,15 @@ values ('6edfbc36-f1f3-4a74-a5ca-b460520403b4', 'Иван', 'Иванов', 'adm
         '$2a$10$mqgq2/vI5hfgrStkmNsY5eyiourAT5ZceJdeVQP5m9Vn1lu3MaZ0a', '3302b0a3-4b45-4503-9bdc-e6e0e1755b25');
 
 insert into author
-values ('9dd8ca37-c315-4525-8648-edf1da198fdb', 'Алина Глазун');
+values ('9dd8ca37-c315-4525-8648-edf1da198fdb', 'Алина Глазун', false);
 insert into author
-values ('de9404a3-2996-4db7-8d46-619aa241362c', 'Евгений Гранильщиков');
+values ('de9404a3-2996-4db7-8d46-619aa241362c', 'Евгений Гранильщиков', false);
 insert into author
-values ('8d2b4bfa-24ee-49ae-83a7-98eb46432ff3', 'Алексей Дубинский');
+values ('8d2b4bfa-24ee-49ae-83a7-98eb46432ff3', 'Алексей Дубинский', false);
 insert into author
-values ('c690955c-04c8-497a-aa92-e34e82148b85', 'Евфросина');
+values ('c690955c-04c8-497a-aa92-e34e82148b85', 'Евфросина', false);
 insert into author
-values ('be2a36f0-2bbc-4b7d-bb0f-e8e583d54f39', 'Миша Никатин');
+values ('be2a36f0-2bbc-4b7d-bb0f-e8e583d54f39', 'Миша Никатин', false);
 
 insert into event
 values ('d82bc250-07aa-47da-9ba0-93b83b59cf9e', 'Персональная выставка Алины Глазун',

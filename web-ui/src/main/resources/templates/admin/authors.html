@@ -12,6 +12,7 @@
     <div class="d-flex gap-2 py-5">
         <button id="update-author" class="btn btn-primary">Редактировать</button>
         <button id="create-author" class="btn btn-primary">Создать</button>
+        <button id="delete-author" class="btn btn-primary">Удалить</button>
     </div>
 
 
@@ -30,6 +31,8 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
+
 <script>
     $(document).ready(function () {
 
@@ -87,6 +90,17 @@
                 alert("выберите значение из таблицы");
             } else {
                 window.location.href = (window.location.pathname + "/" + ids[1]);
+            }
+        });
+
+        $('#delete-author').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            if (ids[1] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                deleteAuthor(ids[1]);
             }
         });
 
