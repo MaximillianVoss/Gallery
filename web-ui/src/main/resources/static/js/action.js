@@ -109,6 +109,6 @@ function uploadFile() {
 }
 
 function downloadFile() {
-    let path = $("#exhibits-table .selected td:last-child").text().replace('web-ui/src/main/resources/static/', '');
-    open("http://localhost:8080/" + path);
+    let path = $("#exhibits-table .selected td:last-child").text();
+    open("http://localhost:8080" + path);
 }
