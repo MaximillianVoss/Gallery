@@ -7,6 +7,8 @@ import com.goganesh.gallery.model.domain.ExhibitPlace;
 import com.goganesh.gallery.model.exception.NotFoundException;
 import com.goganesh.gallery.model.service.*;
 import com.goganesh.gallery.webapi.dto.PostExhibitPlaceRequest;
+import com.goganesh.gallery.webapi.dto.PostExhibitRequest;
+import com.goganesh.gallery.webapi.dto.PutExhibitRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -33,34 +34,34 @@ public class ExhibitController {
     private final ImageService imageService;
 
     @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String putExhibit(@RequestParam Map<String, String> allParams,
+    public String putExhibit(PutExhibitRequest putExhibitRequest,
                              @RequestParam("imageFile") MultipartFile file) throws IOException {
-        Exhibit exhibit = exhibitService.findById(UUID.fromString(allParams.get("id")))
-                .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", allParams.get("id")));
+        Exhibit exhibit = exhibitService.findById(putExhibitRequest.getId())
+                .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", putExhibitRequest.getId().toString()));
 
-        exhibit.setName(allParams.get("name"));
-        exhibit.setYear(Integer.valueOf(allParams.get("year")));
-        exhibit.setLength(Integer.valueOf(allParams.get("length")));
-        exhibit.setWidth(Integer.valueOf(allParams.get("width")));
+        exhibit.setName(putExhibitRequest.getName());
+        exhibit.setYear(putExhibitRequest.getYear());
+        exhibit.setLength(putExhibitRequest.getLength());
+        exhibit.setWidth(putExhibitRequest.getWidth());
 
-        Author author = authorService.findById(UUID.fromString(allParams.get("authorId")))
-                .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", allParams.get("authorId")));
+        Author author = authorService.findById(putExhibitRequest.getAuthorId())
+                .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", putExhibitRequest.getAuthorId().toString()));
         exhibit.setAuthor(author);
 
-        Dictionary type = dictionaryService.findById(UUID.fromString(allParams.get("typeId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("typeId")));
+        Dictionary type = dictionaryService.findById(putExhibitRequest.getTypeId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getTypeId().toString()));
         exhibit.setType(type);
 
-        Dictionary storageCondition = dictionaryService.findById(UUID.fromString(allParams.get("storageConditionId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("storageConditionId")));
+        Dictionary storageCondition = dictionaryService.findById(putExhibitRequest.getStorageConditionId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getStorageConditionId().toString()));
         exhibit.setStorageCondition(storageCondition);
 
-        Dictionary style = dictionaryService.findById(UUID.fromString(allParams.get("styleId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("styleId")));
+        Dictionary style = dictionaryService.findById(putExhibitRequest.getStyleId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getStyleId().toString()));
         exhibit.setStyle(style);
 
-        Dictionary genre = dictionaryService.findById(UUID.fromString(allParams.get("genreId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("genreId")));
+        Dictionary genre = dictionaryService.findById(putExhibitRequest.getGenreId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getGenreId().toString()));
         exhibit.setGenre(genre);
 
         if (Objects.nonNull(exhibit.getImage())) {
@@ -78,33 +79,33 @@ public class ExhibitController {
     }
 
     @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String postExhibit(@RequestParam Map<String, String> allParams,
+    public String postExhibit(PostExhibitRequest postExhibitRequest,
                               @RequestParam("imageFile") MultipartFile file) throws IOException {
         Exhibit exhibit = new Exhibit();
 
-        exhibit.setName(allParams.get("name"));
-        exhibit.setYear(Integer.valueOf(allParams.get("year")));
-        exhibit.setLength(Integer.valueOf(allParams.get("length")));
-        exhibit.setWidth(Integer.valueOf(allParams.get("width")));
+        exhibit.setName(postExhibitRequest.getName());
+        exhibit.setYear(postExhibitRequest.getYear());
+        exhibit.setLength(postExhibitRequest.getLength());
+        exhibit.setWidth(postExhibitRequest.getWidth());
 
-        Author author = authorService.findById(UUID.fromString(allParams.get("authorId")))
-                .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", allParams.get("authorId")));
+        Author author = authorService.findById(postExhibitRequest.getAuthorId())
+                .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", postExhibitRequest.getAuthorId().toString()));
         exhibit.setAuthor(author);
 
-        Dictionary type = dictionaryService.findById(UUID.fromString(allParams.get("typeId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("typeId")));
+        Dictionary type = dictionaryService.findById(postExhibitRequest.getTypeId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getTypeId().toString()));
         exhibit.setType(type);
 
-        Dictionary storageCondition = dictionaryService.findById(UUID.fromString(allParams.get("storageConditionId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("storageConditionId")));
+        Dictionary storageCondition = dictionaryService.findById(postExhibitRequest.getStorageConditionId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getStorageConditionId().toString()));
         exhibit.setStorageCondition(storageCondition);
 
-        Dictionary style = dictionaryService.findById(UUID.fromString(allParams.get("styleId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("styleId")));
+        Dictionary style = dictionaryService.findById(postExhibitRequest.getStyleId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getStyleId().toString()));
         exhibit.setStyle(style);
 
-        Dictionary genre = dictionaryService.findById(UUID.fromString(allParams.get("genreId")))
-                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", allParams.get("genreId")));
+        Dictionary genre = dictionaryService.findById(postExhibitRequest.getGenreId())
+                .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getGenreId().toString()));
         exhibit.setGenre(genre);
 
         exhibitService.create(exhibit);
