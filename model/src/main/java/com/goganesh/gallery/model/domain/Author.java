@@ -18,9 +18,8 @@ import javax.persistence.Table;
 @Entity
 @SQLDelete(sql = "UPDATE author SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-public class Author extends BaseEntity {
+public class Author extends BaseAudit {
 
     private String name;
 
-    private boolean deleted = Boolean.FALSE;
 }

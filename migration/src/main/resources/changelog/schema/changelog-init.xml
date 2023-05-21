@@ -52,6 +52,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="image" type="varchar" remarks="обложка карточки"/>
+            <column name="deleted" type="BOOLEAN" remarks="признак удаления" defaultValueBoolean="false"/>
         </createTable>
 
         <createTable tableName="author" remarks="авторы работ">
@@ -101,6 +102,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="image" type="varchar" remarks="обложка карточки"/>
+            <column name="deleted" type="BOOLEAN" remarks="признак удаления" defaultValueBoolean="false"/>
         </createTable>
 
         <createTable tableName="event_exhibit" remarks="экспонаты мероприятия">

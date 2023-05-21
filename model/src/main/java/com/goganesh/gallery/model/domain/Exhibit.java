@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -13,7 +15,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name = "exhibit")
 @Entity
-public class Exhibit extends BaseEntity {
+@SQLDelete(sql = "UPDATE exhibit SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
+public class Exhibit extends BaseAudit {
 
     private String name;
     private String code;

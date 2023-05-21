@@ -52,4 +52,8 @@ public class EventService {
     public long countAllByNameContain(String search) {
         return eventRepository.countAllByNameContainingIgnoreCase(search);
     }
+
+    public void delete(Event event) {
+        eventRepository.delete(event);
+    }
 }

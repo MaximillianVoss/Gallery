@@ -1,10 +1,10 @@
-function deleteAuthor(id) {
+function deleteObject(id, objectName) {
     $.ajax({
-        url: "http://localhost:8080/api/v1/authors/" + id,
+        url: "http://localhost:8080/api/v1/" + objectName + "/" + id,
         type: "DELETE",
 
         success: function (data, status, xhr) {
-            window.location.replace("/admin/authors/");
+            window.location.replace("/admin/" + objectName + "/");
         }
     })
 }

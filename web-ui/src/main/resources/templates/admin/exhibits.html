@@ -12,6 +12,7 @@
     <div class="d-flex gap-2 py-5">
         <button id="update-exhibit" class="btn btn-primary">Редактировать</button>
         <button id="create-exhibit" class="btn btn-primary">Создать</button>
+        <button id="delete-exhibit" class="btn btn-primary">Удалить</button>
         <button id="replace-exhibit" class="btn btn-primary">Переместить</button>
         <button id="add-exhibit-doc" class="btn btn-primary">Добавить документы</button>
     </div>
@@ -35,6 +36,7 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -107,6 +109,17 @@
                 alert("выберите значение из таблицы");
             } else {
                 window.location.href = (window.location.pathname + "/" + ids[3]);
+            }
+        });
+
+        $('#delete-exhibit').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                deleteObject(ids[3], "exhibits");
             }
         });
 

@@ -12,6 +12,7 @@
     <div class="d-flex gap-2 py-5">
         <button id="update-event" class="btn btn-primary">Редактировать</button>
         <button id="create-event" class="btn btn-primary">Создать</button>
+        <button id="delete-event" class="btn btn-primary">Удалить</button>
         <button id="event-exhibits" class="btn btn-primary">Добавить экспонаты</button>
     </div>
 
@@ -22,8 +23,8 @@
         <tr>
             <th>Идентификатор</th>
             <th>Название</th>
-            <th>Старт</th>
-            <th>Конец</th>
+            <th>Дата начала</th>
+            <th>Дата окончания</th>
             <th>Тип</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
 <script>
     $(document).ready(function () {
         var table = $('#events-table').DataTable({
@@ -93,6 +95,17 @@
                 alert("выберите значение из таблицы");
             } else {
                 window.location.href = (window.location.pathname + "/" + ids[3]);
+            }
+        });
+
+        $('#delete-event').click(function () {
+            var ids = $.map(table.row('.selected').data(), function (item) {
+                return item
+            });
+            if (ids[3] == null) {
+                alert("выберите значение из таблицы");
+            } else {
+                deleteObject(ids[3], "events");
             }
         });
 

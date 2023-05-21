@@ -55,4 +55,8 @@ public class ExhibitService {
     public long countAllByNameContain(String search) {
         return exhibitRepository.countAllByNameContainingIgnoreCase(search);
     }
+
+    public void delete(Exhibit exhibit) {
+        exhibitRepository.delete(exhibit);
+    }
 }

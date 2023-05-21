@@ -126,4 +126,13 @@ public class EventController {
         createdEventExhibit.setExhibit(exhibit);
         return eventExhibitService.save(createdEventExhibit);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable UUID id) {
+        Event event = eventService.findById(id)
+                .orElseThrow(() -> new NotFoundException(Event.class.getSimpleName(), "id", id.toString()));
+        eventService.delete(event);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
