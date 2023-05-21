@@ -13,7 +13,7 @@
     <form th:action="@{/api/v1/events/create}" action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required>
+            <input maxlength="50" onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required>
         </div>
 
         <div class="form-group">
@@ -22,12 +22,12 @@
         </div>
 
         <div class="form-group">
-            <label for="start-input">Старт</label>
+            <label for="start-input">Дата начала</label>
             <input name="start" type="date" class="form-control" id="start-input" required>
         </div>
 
         <div class="form-group">
-            <label for="end-input">Конец</label>
+            <label for="end-input">Дата окончания</label>
             <input name="end" type="date" class="form-control" id="end-input" required>
         </div>
 

@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required
+            <input maxlength="50" onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required
                    th:value="${event.name}">
         </div>
         <div class="form-group">
@@ -29,12 +29,12 @@
         </div>
 
         <div class="form-group">
-            <label for="start-input">Описание</label>
+            <label for="start-input">Дата начала</label>
             <input name="start" type="date" class="form-control" id="start-input" required
                    th:value="${event.start}">
         </div>
         <div class="form-group">
-            <label for="end-input">Артикул</label>
+            <label for="end-input">Дата окончания</label>
             <input name="end" type="date" class="form-control" id="end-input" required
                    th:value="${event.end}">
         </div>

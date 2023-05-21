@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="name-input">Название</label>
-            <input onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required
+            <input maxlength="30" onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="name" type="text" class="form-control" id="name-input" required
                    th:value="${exhibit.name}">
         </div>
 
@@ -57,19 +57,19 @@
 
         <div class="form-group">
             <label for="year-input">Год</label>
-            <input min="1950" max="2023" name="year" type="number" class="form-control" id="year-input"
+            <input min="1200" max="2023" name="year" type="number" class="form-control" id="year-input"
                    th:value="${exhibit.year}">
         </div>
 
         <div class="form-group">
-            <label for="length-input">Длина</label>
-            <input min="1" name="length" type="number" class="form-control" id="length-input"
+            <label for="length-input">Длина (см.)</label>
+            <input min="1" max="3000" name="length" type="number" class="form-control" id="length-input"
                    th:value="${exhibit.length}">
         </div>
 
         <div class="form-group">
-            <label for="width-input">Ширина</label>
-            <input min="1" name="width" type="number" class="form-control" id="width-input"
+            <label for="width-input">Ширина (см.)</label>
+            <input min="1" max="3000" name="width" type="number" class="form-control" id="width-input"
                    th:value="${exhibit.width}">
         </div>
 
