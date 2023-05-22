@@ -24,10 +24,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form th:action="@{/api/v1/exhibits/} + ${exhibit.id} + '/places'" action="#" method="post">
                         <div class="mb-3">
                             <label for="place-input" class="col-form-label">Тип</label>
-                            <select class="form-select" id="place-input" required>
+                            <select name="placeId" class="form-select" id="place-input" required>
                                 <option th:each="place : ${places}" th:value="${place.id}" th:text="${place.name}">
                                     United States
                                 </option>
@@ -36,14 +36,15 @@
 
                         <div class="mb-3">
                             <label for="comment-input" class="col-form-label">Комментрий:</label>
-                            <textarea class="form-control" id="comment-input" required></textarea>
+                            <textarea name="comment" class="form-control" id="comment-input" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-primary">Переместить</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                    <button onclick="createReplaceObj()" type="button" class="btn btn-primary">Создать перемещение</button>
-                </div>
+
             </div>
         </div>
     </div>
@@ -64,7 +65,6 @@
 
 </main>
 <footer th:replace="~{fragments/admin/footer_fragment :: footer}"></footer>
-<script type="text/javascript" charset="utf8" src="/js/action.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 <script>

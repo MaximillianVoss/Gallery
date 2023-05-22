@@ -59,11 +59,9 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .sessionManagement()
-                .enableSessionUrlRewriting(true)
+                .sessionManagement().enableSessionUrlRewriting(true)
                 .and()
-                .csrf()
-                .disable()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAnyRole("TYPE_ADMIN")
                 .antMatchers("/**").permitAll()

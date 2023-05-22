@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +28,7 @@ import java.util.UUID;
 @RequestMapping("/api/v1/exhibits")
 @PreAuthorize("hasAnyRole('TYPE_ADMIN')")
 @AllArgsConstructor
+@Validated
 public class ExhibitController {
 
     private final ExhibitService exhibitService;
@@ -36,7 +38,7 @@ public class ExhibitController {
     private final ImageService imageService;
 
     @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String putExhibit(PutExhibitRequest putExhibitRequest,
+    public String putExhibit(@Valid PutExhibitRequest putExhibitRequest,
                              @RequestParam("imageFile") MultipartFile file) throws IOException {
         Exhibit exhibit = exhibitService.findById(putExhibitRequest.getId())
                 .orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", putExhibitRequest.getId().toString()));
@@ -81,7 +83,7 @@ public class ExhibitController {
     }
 
     @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String postExhibit(PostExhibitRequest postExhibitRequest,
+    public String postExhibit(@Valid PostExhibitRequest postExhibitRequest,
                               @RequestParam("imageFile") MultipartFile file) throws IOException {
         Exhibit exhibit = new Exhibit();
 
@@ -121,8 +123,8 @@ public class ExhibitController {
     }
 
     @PostMapping("/{id}/places")
-    public @ResponseBody ExhibitPlace postExhibitPlace(@PathVariable UUID id,
-                                         @Valid @RequestBody PostExhibitPlaceRequest exhibitPlaceRequest) {
+    public String postExhibitPlace(@PathVariable UUID id,
+                                   @Valid PostExhibitPlaceRequest exhibitPlaceRequest) {
         Exhibit exhibit = exhibitService.findById(id).orElseThrow(() -> new NotFoundException(Exhibit.class.getSimpleName(), "id", id.toString()));
         Dictionary dictionary = dictionaryService.findById(exhibitPlaceRequest.getPlaceId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", exhibitPlaceRequest.getPlaceId().toString()));
@@ -132,7 +134,9 @@ public class ExhibitController {
         exhibitPlace.setPlace(dictionary);
         exhibitPlace.setComment(exhibitPlaceRequest.getComment());
 
-        return exhibitPlaceService.save(exhibitPlace);
+        exhibitPlaceService.save(exhibitPlace);
+
+        return "redirect:/admin/exhibits/" + exhibit.getId() + "/places";
     }
 
     @DeleteMapping("{id}")

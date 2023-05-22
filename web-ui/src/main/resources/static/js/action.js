@@ -1,6 +1,10 @@
+function getHost() {
+    return "http://localhost:8080";
+}
+
 function deleteObject(id, objectName) {
     $.ajax({
-        url: "http://localhost:8080/api/v1/" + objectName + "/" + id,
+        url: getHost() + "/api/v1/" + objectName + "/" + id,
         type: "DELETE",
 
         success: function (data, status, xhr) {
@@ -16,7 +20,7 @@ function deleteEventExhibitObj() {
     let exhibitId = $("#event-exhibits-table .selected td:first-child").text();
 
     $.ajax({
-        url: "http://localhost:8080/api/v1/events/" + eventId + "/exhibits/" + exhibitId,
+        url: getHost() + "/api/v1/events/" + eventId + "/exhibits/" + exhibitId,
         type: "DELETE",
 
         success: function (data, status, xhr) {
@@ -32,33 +36,11 @@ function addEventExhibitObj() {
     let exhibitId = $("#exhibits-table .selected td:first-child").text();
 
     $.ajax({
-        url: "http://localhost:8080/api/v1/events/" + eventId + "/exhibits/" + exhibitId,
+        url: getHost() + "/api/v1/events/" + eventId + "/exhibits/" + exhibitId,
         type: "POST",
 
         success: function (data, status, xhr) {
             window.location.replace("/admin/events/" + eventId + "/exhibits/");
-        }
-    })
-}
-
-function createReplaceObj() {
-    let url = window.location.pathname;
-    let pathArray = url.split("/");
-    let exhibitId = pathArray[3];
-
-    let obj = new Object();
-    obj.comment = $("#comment-input").val();
-    obj.place_id = $("#place-input").val();
-
-    let json = JSON.stringify(obj);
-    $.ajax({
-        url: "http://localhost:8080/api/v1/exhibits/" + exhibitId + "/places",
-        type: "POST",
-        data: json,
-        contentType: 'application/json',
-
-        success: function (data, status, xhr) {
-            window.location.replace("/admin/exhibits/" + exhibitId + "/places");
         }
     })
 }
@@ -71,7 +53,7 @@ function deleteExhibitDocument() {
     let documentId = $("#exhibits-table .selected td:first-child").text();
 
     $.ajax({
-        url: "http://localhost:8080/api/v1/exhibits/" + exhibitId + "/documents/" + documentId,
+        url: getHost() + "/api/v1/exhibits/" + exhibitId + "/documents/" + documentId,
         type: "DELETE",
 
         success: function (data, status, xhr) {
@@ -92,7 +74,7 @@ function uploadFile() {
     let id = pathArray[3];
 
     $.ajax({
-        url: "http://localhost:8080/api/v1/exhibits/" + id + "/documents",
+        url: getHost() + "/api/v1/exhibits/" + id + "/documents",
         type: "POST",
         enctype: 'multipart/form-data',
         data: data,
@@ -110,5 +92,5 @@ function uploadFile() {
 
 function downloadFile() {
     let path = $("#exhibits-table .selected td:last-child").text();
-    open("http://localhost:8080" + path);
+    open(getHost() + path);
 }
