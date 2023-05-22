@@ -45,7 +45,7 @@ public class ExhibitFileService {
     }
 
     public void delete(ExhibitFile exhibitFile) throws IOException {
-        Path path = Paths.get(exhibitFile.getPath());
+        Path path = Paths.get(baseDirectory, exhibitFile.getPath());
         fileStorageService.deleteFile(path);
 
         exhibitFileRepository.delete(exhibitFile);
