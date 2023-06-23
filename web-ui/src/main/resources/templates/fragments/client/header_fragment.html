@@ -26,7 +26,11 @@
             <li class="nav-item"><a th:href="@{/about}"
                                     th:class="${main=='about'} ? 'nav-link active' : 'nav-link'"
                                     href="#"
-                                    class="nav-link">О галерее</a></li>
+                                    class="nav-link">Авторы</a></li>
+            <li class="nav-item"><a th:href="@{/login}"
+                                    th:class="${main=='login'} ? 'nav-link active' : 'nav-link'"
+                                    href="#"
+                                    class="nav-link">Войти</a></li>
         </ul>
     </header>
 
