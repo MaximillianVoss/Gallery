@@ -52,3 +52,8 @@ insert into dictionary values ('cf95ce84-70bc-477b-82ec-964f11e75532', '214f8858
 insert into dictionary values ('585178e2-b91e-433c-863b-275dddf1b172', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Средне специальное', 'EDUCATION_TYPE_MIDDLE_SPECIAL');
 insert into dictionary values ('6102de63-2dbc-4c54-8a82-598e3da084f2', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Неоконченное высшее', 'EDUCATION_TYPE_ALMOST_HIGN');
 insert into dictionary values ('6595f8a5-53e2-4835-b5e0-9b68409d1c81', '214f8858-27af-4d7d-8cb0-8e8bc3a64805', 'Высшее', 'EDUCATION_TYPE_HIGN');
+
+insert into dictionary values ('278cab35-a2b2-428a-beeb-2ebb9e5186b7', null, 'Статус', 'STATUS_TYPE');
+insert into dictionary values ('c25a51e8-7db0-4f12-8d14-20a15d9cb6aa', '278cab35-a2b2-428a-beeb-2ebb9e5186b7', 'В музее', 'STATUS_TYPE_DEFAULT');
+insert into dictionary values ('ee898542-ab92-4df2-bf6a-da3820c86a0c', '278cab35-a2b2-428a-beeb-2ebb9e5186b7', 'На реставрации', 'STATUS_TYPE_RESTORE');
+insert into dictionary values ('7e66d0e5-ae82-4673-9cbb-caf11253dd81', '278cab35-a2b2-428a-beeb-2ebb9e5186b7', 'На хранении', 'STATUS_TYPE_STORAGE');

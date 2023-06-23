@@ -31,4 +31,5 @@ public class Event extends BaseAudit {
     private Dictionary type;
 
     private String image;
+    private Long price;
 }

@@ -53,6 +53,12 @@
             </column>
             <column name="image" type="varchar" remarks="обложка карточки"/>
             <column name="deleted" type="BOOLEAN" remarks="признак удаления" defaultValueBoolean="false"/>
+            <column name="date_gain" type="DATE" remarks="дата приобретения" defaultValueDate="2022-06-23"/>
+            <column name="date_restore" type="DATE" remarks="дата реставрации" defaultValueDate="2023-06-23"/>
+            <column name="txt" type="varchar" remarks="информация" defaultValue="Информация о картине"/>
+            <column name="status_id" type="UUID" remarks="статус">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createTable tableName="author" remarks="авторы работ">
@@ -103,6 +109,9 @@
             </column>
             <column name="image" type="varchar" remarks="обложка карточки"/>
             <column name="deleted" type="BOOLEAN" remarks="признак удаления" defaultValueBoolean="false"/>
+            <column name="price" type="NUMERIC" remarks="цена" defaultValueNumeric="100.00">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createTable tableName="event_exhibit" remarks="экспонаты мероприятия">
@@ -170,6 +179,12 @@
                                  constraintName="fk_exhibit_storage_condition_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dictionary"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+          baseTableName="exhibit"
+          constraintName="fk_exhibit_status_id"
+          referencedColumnNames="id"
+          referencedTableName="dictionary"/>
 
         <addForeignKeyConstraint baseColumnNames="style_id"
                                  baseTableName="exhibit"

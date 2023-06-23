@@ -20,6 +20,7 @@ public class DictionaryService {
     public static final String EVENT_TYPE_CODE = "EVENT_TYPE";
     public static final String EDU_TYPE_CODE = "EDUCATION_TYPE";
     public static final String SEX_TYPE_CODE = "SEX_TYPE";
+    public static final String STATUS_TYPE_CODE = "STATUS_TYPE";
 
     private final DictionaryRepository dictionaryRepository;
 

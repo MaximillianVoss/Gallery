@@ -1,5 +1,6 @@
 package com.goganesh.gallery.model.domain;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,5 +48,17 @@ public class Exhibit extends BaseAudit {
     private Integer width;
 
     private String image;
+
+    @Column(name = "date_gain")
+    private LocalDate dateGain;
+
+    @Column(name = "date_restore")
+    private LocalDate dateRestore;
+
+    private String txt;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Dictionary status;
 
 }

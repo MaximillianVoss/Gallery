@@ -22,6 +22,9 @@
                     <div class="btn-group">
                         <a th:href="@{/events/} + ${event.id}" class="btn btn-md btn-outline-secondary">Просмотреть</a>
                     </div>
+                    <div class="btn-group">
+                        <button th:text="'Цена '+${event.price}" type="button" class="tn btn-md btn-outline-primary"></button>
+                    </div>
                     <small th:text="' Работы: ' + ${count}" class="text-muted">9 mins</small>
                 </div>
             </div>
