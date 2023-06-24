@@ -60,6 +60,10 @@ public class ExhibitController {
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getStorageConditionId().toString()));
         exhibit.setStorageCondition(storageCondition);
 
+        Dictionary status = dictionaryService.findById(putExhibitRequest.getStatusId())
+            .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getStatusId().toString()));
+        exhibit.setStatus(status);
+
         Dictionary style = dictionaryService.findById(putExhibitRequest.getStyleId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", putExhibitRequest.getStyleId().toString()));
         exhibit.setStyle(style);
@@ -103,6 +107,10 @@ public class ExhibitController {
         Dictionary storageCondition = dictionaryService.findById(postExhibitRequest.getStorageConditionId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getStorageConditionId().toString()));
         exhibit.setStorageCondition(storageCondition);
+
+        Dictionary status = dictionaryService.findById(postExhibitRequest.getStatusId())
+            .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getStatusId().toString()));
+        exhibit.setStatus(status);
 
         Dictionary style = dictionaryService.findById(postExhibitRequest.getStyleId())
                 .orElseThrow(() -> new NotFoundException(Dictionary.class.getSimpleName(), "id", postExhibitRequest.getStyleId().toString()));

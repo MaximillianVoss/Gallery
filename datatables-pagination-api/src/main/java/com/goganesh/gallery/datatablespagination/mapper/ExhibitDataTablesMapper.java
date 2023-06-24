@@ -21,5 +21,7 @@ public interface ExhibitDataTablesMapper {
             source = "exhibit.type.name")
     @Mapping(target = "storageCondition",
             source = "exhibit.storageCondition.name")
+    @Mapping(target = "status",
+        source = "exhibit.status.name")
     ExhibitDataTablesDto toDto(Exhibit exhibit);
 }

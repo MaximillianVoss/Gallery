@@ -42,4 +42,7 @@ public class PutExhibitRequest {
     @NotNull
     private UUID genreId;
 
+    @NotNull
+    private UUID statusId;
+
 }

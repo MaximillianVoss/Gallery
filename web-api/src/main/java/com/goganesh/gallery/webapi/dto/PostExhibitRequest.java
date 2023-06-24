@@ -38,4 +38,7 @@ public class PostExhibitRequest {
 
     @NotNull
     private UUID genreId;
+
+    @NotNull
+    private UUID statusId;
 }

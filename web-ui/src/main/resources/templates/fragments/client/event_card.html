@@ -15,7 +15,7 @@
                  data-holder-rendered="true">
             <div class="card-body">
                 <h3 th:text="${event.name}">Heading</h3>
-                <div th:text="${event.start} + ' - ' + ${event.end}" class="mb-1 text-muted">Nov 11</div>
+                <div th:text="'Дата начала выставки '+ ${event.start} + ' - Дата окончания выставки ' + ${event.end}" class="mb-1 text-muted">Nov 11</div>
                 <p class="card-text" th:text="${event.description}">This is a wider card with supporting text below as a
                     natural lead-in to additional content. This content is a little bit longer.</p>
                 <div class="d-flex justify-content-between align-items-center">

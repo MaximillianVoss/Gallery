@@ -15,7 +15,7 @@ values ('be2a36f0-2bbc-4b7d-bb0f-e8e583d54f39', 'Миша Никатин', false
 
 insert into event
 values ('d82bc250-07aa-47da-9ba0-93b83b59cf9e', 'Персональная выставка Алины Глазун',
-        'Персональная выставка современной москвоской хужожницы Алина Глазун', '2023-03-01', '2023-03-15',
+        'Персональная выставка современной москвоской художницы Алина Глазун', '2023-03-01', '2023-03-15',
         'fffaf5fe-4885-4cce-8361-98602c5ac965',
         '/img/events/d82bc250-07aa-47da-9ba0-93b83b59cf9e/zgc1993-Fk9RSVdJ6Q8-unsplash-min.jpg', false);
 insert into event
@@ -31,7 +31,7 @@ values ('eb628b29-0f9e-4a41-8eea-88f14aae3e70', 'Персональная выс
 
 INSERT INTO exhibit (id, "name", code, author_id, type_id, storage_condition_id, "year", length, width, style_id,
                      genre_id, image, deleted, status_id)
-VALUES ('d17a9d20-fcc8-49e3-9924-aba19b423209', 'Волны', 'CODE1', '9dd8ca37-c315-4525-8648-edf1da198fdb',
+VALUES ('d17a9d20-fcc8-49e3-9924-aba19b423209', 'Волны', 'Барокко', '9dd8ca37-c315-4525-8648-edf1da198fdb',
         '9ae21a22-3766-40fe-a4b5-8e65b8e32f55', '18fa6745-9860-4870-afe9-269f1c304186', 2012, 160, 120,
         '58f53eaf-829c-4cef-8915-5bb14a77462f', 'a4edb8d9-18b0-44ca-a145-deacdacf8a1c',
         '/img/exhibits/d17a9d20-fcc8-49e3-9924-aba19b423209/henrik-donnestad-t2Sai-AqIpI-unsplash.jpg', false, '278cab35-a2b2-428a-beeb-2ebb9e5186b7'),

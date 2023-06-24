@@ -71,6 +71,7 @@ public class EventsPageController {
         model.addAttribute("genres", dictionaryService.findAllByParenCode(GENRE_TYPE_CODE));
         model.addAttribute("edus", dictionaryService.findAllByParenCode(EDU_TYPE_CODE));
         model.addAttribute("sexs", dictionaryService.findAllByParenCode(SEX_TYPE_CODE));
+        model.addAttribute("status", dictionaryService.findAllByParenCode(STATUS_TYPE_CODE));
 
         return "client/events_recommend_form";
     }

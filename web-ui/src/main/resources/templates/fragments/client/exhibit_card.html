@@ -8,7 +8,7 @@
                 <strong th:text="${exhibit.type.name}" class="d-inline-block mb-2 text-success">Design</strong>
                 <h3 th:text="${exhibit.name}" class="mb-0"></h3>
                 <div th:text="${exhibit.author.name}" class="mb-1 text-muted">Nov 11</div>
-                <p th:text="'Год ' + ${exhibit.year} + '; ' + 'Длина ' + ${exhibit.length} + ' см; Ширина ' + ${exhibit.width} + ' см;'+ ' Дата приобретения ' + ${exhibit.dateGain} + ' г;'+ ' Дата реставрации ' + ${exhibit.dateRestore} + ' г;'"
+                <p th:text="'Год ' + ${exhibit.year} + '; ' + 'Длина ' + ${exhibit.length} + ' см; Ширина ' + ${exhibit.width} + ' см;'+ ' Дата приобретения ' + ${exhibit.dateGain} + ' г;'+ ' Дата реставрации ' + ${exhibit.dateRestore} + ' г;'+ ' Жанр ' + ${exhibit.genre.name}"
                    class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
                     additional content.</p>
 
