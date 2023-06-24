@@ -25,15 +25,15 @@ public class DictionaryService {
     private final DictionaryRepository dictionaryRepository;
 
     public Optional<Dictionary> findByCode(String code) {
-        return dictionaryRepository.findByCode(code);
+        return dictionaryRepository.findByCodeOrderByName(code);
     }
 
     public List<Dictionary> findAllByParenCode(String code) {
-        return dictionaryRepository.findAllByDictionary_Code(code);
+        return dictionaryRepository.findAllByDictionary_CodeOrderByName(code);
     }
 
     public List<Dictionary> findAllByDictionary(Dictionary dictionary) {
-        return dictionaryRepository.findAllByDictionary(dictionary);
+        return dictionaryRepository.findAllByDictionaryOrderByName(dictionary);
     }
 
     public Optional<Dictionary> findById(UUID id) {

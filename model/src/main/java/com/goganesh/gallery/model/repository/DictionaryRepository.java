@@ -9,9 +9,9 @@ import java.util.UUID;
 
 public interface DictionaryRepository extends JpaRepository<Dictionary, UUID> {
 
-    Optional<Dictionary> findByCode(String code);
+    Optional<Dictionary> findByCodeOrderByName(String code);
 
-    List<Dictionary> findAllByDictionary(Dictionary dictionary);
+    List<Dictionary> findAllByDictionaryOrderByName(Dictionary dictionary);
 
-    List<Dictionary> findAllByDictionary_Code(String code);
+    List<Dictionary> findAllByDictionary_CodeOrderByName(String code);
 }

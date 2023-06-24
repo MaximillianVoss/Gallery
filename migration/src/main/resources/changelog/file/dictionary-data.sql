@@ -20,8 +20,8 @@ insert into dictionary values ('f2145928-eeac-4347-bd3c-2e2dabbf0608', '25c17414
 insert into dictionary values ('d7cdc140-6320-4a42-ad62-0be978e55b0c', '25c17414-86ad-49ee-af18-47c30a79787c', 'Реставрация', 'PLACE_TYPE_RESTORATION');
 
 insert into dictionary values ('fee27cff-0f8e-4ca9-8836-827268aea6ef', null, 'Тип условия хранения', 'STORAGE_CONDITION_TYPE');
-insert into dictionary values ('9fab0f15-2309-4eea-bdf1-7041aa40f26e', 'fee27cff-0f8e-4ca9-8836-827268aea6ef', 'Специальное хранение', 'STORAGE_CONDITION_TYPE_SPECIAL');
 insert into dictionary values ('18fa6745-9860-4870-afe9-269f1c304186', 'fee27cff-0f8e-4ca9-8836-827268aea6ef', 'Обычное хранение', 'STORAGE_CONDITION_TYPE_REGULAR');
+insert into dictionary values ('9fab0f15-2309-4eea-bdf1-7041aa40f26e', 'fee27cff-0f8e-4ca9-8836-827268aea6ef', 'Специальное хранение', 'STORAGE_CONDITION_TYPE_SPECIAL');
 
 insert into dictionary values ('47a57598-8673-4677-a20d-d813320305c9', null, 'Тип стиля', 'STYLE_TYPE');
 insert into dictionary values ('1d19afa9-adc3-4712-ac6c-c3eba2290de8', '47a57598-8673-4677-a20d-d813320305c9', 'Ренессанс', 'STYLE_TYPE_RENAISSANCE');
