@@ -47,6 +47,9 @@ public class ExhibitController {
         exhibit.setYear(putExhibitRequest.getYear());
         exhibit.setLength(putExhibitRequest.getLength());
         exhibit.setWidth(putExhibitRequest.getWidth());
+        exhibit.setDateGain(putExhibitRequest.getDateGain());
+        exhibit.setDateRestore(putExhibitRequest.getDateRestore());
+        exhibit.setTxt(putExhibitRequest.getTxt());
 
         Author author = authorService.findById(putExhibitRequest.getAuthorId())
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", putExhibitRequest.getAuthorId().toString()));
@@ -95,6 +98,9 @@ public class ExhibitController {
         exhibit.setYear(postExhibitRequest.getYear());
         exhibit.setLength(postExhibitRequest.getLength());
         exhibit.setWidth(postExhibitRequest.getWidth());
+        exhibit.setTxt(postExhibitRequest.getTxt());
+        exhibit.setDateGain(postExhibitRequest.getDateGain());
+        exhibit.setDateRestore(postExhibitRequest.getDateRestore());
 
         Author author = authorService.findById(postExhibitRequest.getAuthorId())
                 .orElseThrow(() -> new NotFoundException(Author.class.getSimpleName(), "id", postExhibitRequest.getAuthorId().toString()));

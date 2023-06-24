@@ -1,5 +1,6 @@
 package com.goganesh.gallery.webapi.dto;
 
+import java.time.LocalDate;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -41,4 +42,8 @@ public class PostExhibitRequest {
 
     @NotNull
     private UUID statusId;
+
+    private LocalDate dateGain;
+    private LocalDate dateRestore;
+    private String txt;
 }

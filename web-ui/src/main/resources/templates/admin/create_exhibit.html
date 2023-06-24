@@ -46,6 +46,16 @@
         </div>
 
         <div class="form-group">
+            <label for="status-input" class="form-label">Статус</label>
+            <select name="statusId" class="form-select" id="status-input" required>
+                <option th:each="status : ${statuses}" th:value="${status.id}"
+                        th:text="${status.name}">
+                    United States
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="year-input">Год</label>
             <input min="1200" max="2023" name="year" type="number" class="form-control" id="year-input" required>
         </div>
@@ -95,13 +105,8 @@
         </div>
 
         <div class="form-group">
-            <label for="restore-plan-input">Дата плановой реставрации </label>
-            <input name="restoreplan" type="date" class="form-control" id="restore-plan-input" required>
-        </div>
-
-        <div class="form-group">
-            <label for="place-input">Место </label>
-            <input name="place" type="text" class="form-control" id="place-input" required>
+            <label for="txt-input">Описание</label>
+            <input maxlength="50" onkeydown="return /[а-яa-zё ]/i.test(event.key)" name="txt" type="text" class="form-control" id="txt-input" required>
         </div>
 
         <hr class="my-4">

@@ -41,6 +41,7 @@ public class ExhibitAdminPageController {
         model.addAttribute("storageConditions", dictionaryService.findAllByParenCode(STORAGE_CONDITION_TYPE_CODE));
         model.addAttribute("styles", dictionaryService.findAllByParenCode(STYLE_TYPE_CODE));
         model.addAttribute("genres", dictionaryService.findAllByParenCode(GENRE_TYPE_CODE));
+        model.addAttribute("statuses", dictionaryService.findAllByParenCode(STATUS_TYPE_CODE));
 
         return "admin/create_exhibit";
     }
@@ -56,6 +57,7 @@ public class ExhibitAdminPageController {
         model.addAttribute("storageConditions", dictionaryService.findAllByParenCode(STORAGE_CONDITION_TYPE_CODE));
         model.addAttribute("styles", dictionaryService.findAllByParenCode(STYLE_TYPE_CODE));
         model.addAttribute("genres", dictionaryService.findAllByParenCode(GENRE_TYPE_CODE));
+        model.addAttribute("statuses", dictionaryService.findAllByParenCode(STATUS_TYPE_CODE));
 
         return "admin/update_exhibit";
     }
