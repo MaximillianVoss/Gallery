@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 @AllArgsConstructor
 public class AuthorService {
@@ -16,8 +18,9 @@ public class AuthorService {
     private final AuthorRepository authorRepository;
 
     public List<Author> findAll() {
-        return authorRepository.findAll();
+        return authorRepository.findAll(Sort.by(Direction.ASC, "name"));
     }
+
 
     public Page<Author> findAll(Pageable pageable) {
         return authorRepository.findAll(pageable);
