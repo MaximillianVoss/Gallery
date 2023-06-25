@@ -6,6 +6,7 @@ import com.goganesh.gallery.model.service.ExhibitService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +30,22 @@ public class ExhibitsPageController {
     @GetMapping
     public String exhibitsPage(Model model,
                                @RequestParam("page") Optional<Integer> page,
-                               @RequestParam("size") Optional<Integer> size) {
+                               @RequestParam("size") Optional<Integer> size,
+                               @Param("keyword") String keyword,
+                               @Param("filterone") String filterone) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(9);
 
-        Page<Exhibit> exhibits = exhibitService.findAll(PageRequest.of(currentPage - 1, pageSize));
+        Page<Exhibit> exhibits;
+        if (keyword != null || filterone != null) {
+            exhibits = exhibitService.findAllBySearch(keyword, filterone, PageRequest.of(currentPage - 1, pageSize));
+        } else {
+            exhibits = exhibitService.findAll(PageRequest.of(currentPage - 1, pageSize));
+        }
 
         model.addAttribute("exhibits", exhibits);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("filterone", filterone);
 
         int totalPages = exhibits.getTotalPages();
         if (totalPages > 0) {

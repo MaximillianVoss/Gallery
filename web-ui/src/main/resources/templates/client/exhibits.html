@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/client/head_fragment.html :: head(title='Экспонаты', description='Экспонаты галереи')}">
+<head
+    th:replace="~{fragments/client/head_fragment.html :: head(title='Экспонаты', description='Экспонаты галереи')}">
 </head>
 
 <body class="container">
@@ -9,19 +10,45 @@
 
 <main>
 
-    <h1>Экспонаты</h1>
+  <h1>Экспонаты</h1>
+      <form th:action="@{/exhibits}">
+        Поиск по атрибутам: <input type="text" name="keyword" id="keyword" size="50"
+                                   th:value="${keyword}" required/>
+        &nbsp;
+        Фильтр по опциям: <select id="filterone" name="filterone">
+        <option value="1" selected="selected">Ничего не выбрано</option>
+        <option value="9ae21a22-3766-40fe-a4b5-8e65b8e32f55">Все картины</option>
+        <option value="1a46cebe-e9c5-4d7c-ac57-0985413869e2">Фрески</option>
+        <option value="2012">Только за 2012 год</option>
+      </select>
+        &nbsp;
+        <input type="submit" value="Поиск экспонатов"/>
+        &nbsp;
+        <input type="button" value="Сброс" id="btnClear" onclick="clearSearch()"/>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row row-cols-3">
-                <div th:each="exhibit: ${exhibits.content}">
-                    <td th:replace="~{fragments/client/exhibit_card :: exhibit_card(${exhibit})}"/>
-                </div>
-            </div>
+      </form>
+
+   <!-- <a th:href="@{/exhibits/recommendForm}" class="btn btn-md btn-outline-secondary"
+       href="#">Подобрать Экспонаты</a>-->
+
+  <script type="text/javascript">
+    function clearSearch() {
+      window.location = "[[@{/exhibits}]]";
+    }
+  </script>
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-3">
+        <div th:each="exhibit: ${exhibits.content}">
+          <td th:replace="~{fragments/client/exhibit_card :: exhibit_card(${exhibit})}"/>
         </div>
+      </div>
     </div>
+  </div>
 
-    <td th:replace="~{fragments/client/pagination_fragment :: pagination(items = ${exhibits}, source ='exhibits')}"/>
+  <td th:replace="~{fragments/client/pagination_fragment :: pagination(items = ${exhibits}, source ='exhibits')}"/>
 
 </main>
 <footer th:replace="~{fragments/client/footer_fragment :: footer}"></footer>

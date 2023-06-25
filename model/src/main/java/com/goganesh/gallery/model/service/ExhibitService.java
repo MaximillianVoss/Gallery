@@ -29,6 +29,17 @@ public class ExhibitService {
         return exhibitRepository.findAllByNameContainingIgnoreCase(name, pageable);
     }
 
+    public Page<Exhibit> findAllBySearch(String keyword, String filterone, Pageable pageable) {
+        if (filterone.equals("1")) {
+            return exhibitRepository.findAllBySearchOnly(keyword, pageable);
+        }
+
+        if (filterone.equals("2012")) {
+            return exhibitRepository.findAllBySearchFilterDate(keyword, filterone, pageable);
+        }
+        return exhibitRepository.findAllBySearchAndType(keyword, filterone, pageable);
+    }
+
     public long count() {
         return exhibitRepository.count();
     }
